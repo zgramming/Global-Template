@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:global_template/global_template.dart';
 
 class ColorPallete {
   Color white = const Color(0xFFFFFFFF);
@@ -66,6 +67,29 @@ class ColorPallete {
     Color(0xFF247ba0),
     Color(0xFFf07167),
   ];
+
+  static ThemeData dynamicTheme(bool isDarkMode, BuildContext context) {
+    return ThemeData(
+      primaryColor: colorPallete.primaryColor,
+      accentColor: colorPallete.accentColor,
+      fontFamily: AppConfig.defaultFont,
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+      buttonTheme:
+          ButtonThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+      cardTheme: CardTheme(
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+      scaffoldBackgroundColor: isDarkMode ? colorPallete.darkGrey : colorPallete.backgroundColor2,
+      brightness: isDarkMode ? Brightness.dark : Brightness.light,
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: isDarkMode ? colorPallete.darkGreyAccent2 : colorPallete.accentColor,
+        foregroundColor: isDarkMode ? colorPallete.white : colorPallete.black,
+      ),
+    );
+  }
 }
 
 final colorPallete = ColorPallete();

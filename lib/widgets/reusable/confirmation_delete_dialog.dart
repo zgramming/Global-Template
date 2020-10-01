@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:global_template/global_template.dart';
 
 class ConfirmationDeleteDialog extends StatelessWidget {
@@ -34,7 +35,9 @@ class ConfirmationDeleteDialog extends StatelessWidget {
             onDelete();
             // Navigator.of(context).pop();
             var totalPop = 0;
-            Navigator.popUntil(context, (route) => totalPop++ == totalNavigatorPop);
+            SchedulerBinding.instance.addPostFrameCallback((_) {
+              Navigator.popUntil(context, (route) => totalPop++ == totalNavigatorPop);
+            });
           },
           color: colorPallete.red,
           child: Text(deleteText ?? 'Hapus'),

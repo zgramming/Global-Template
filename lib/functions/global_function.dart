@@ -47,8 +47,40 @@ class GlobalFunction {
     GlobalFunction._cacheManager.emptyCache();
   }
 
-  //!------------------------------------------------------------------------------------------------------------
-  /// Fungsi Untuk Mem-format Angka . Dari 200000 => 200,000
+  ///*------------------------------------------------------------------------------------------------------------
+  ///* Add Separator in String
+  static String stringWithSeparator(
+    String string, {
+    int separateEvery = 4,
+    String separator = '-',
+  }) {
+    var result;
+    if (string.isNotEmpty || string != null) {
+      final value = string.replaceAllMapped(
+          RegExp(r'.{' + separateEvery.toString() + '}'), (match) => '${match.group(0)}$separator');
+      if (string.length % separateEvery == 0) {
+        result = value.substring(0, value.length - 1);
+      } else {
+        result = value;
+      }
+    } else {
+      result = 'String is empty';
+    }
+    return result;
+  }
+
+  ///* Get First Character From Every Word
+  static String getFirstCharacterErveryWord({String string, int limitTo}) {
+    var result;
+    if (string.isNotEmpty) {
+      result = string.trim().split(' ').map((e) => e[0]).take(limitTo).join();
+    } else {
+      result = '';
+    }
+    return result;
+  }
+
+  ///* Fungsi Untuk Mem-format Angka . Dari 200000 => 200,000
   static String formatNumber(int value, [String string = '']) {
     final formatter = NumberFormat('#,###');
     final result = formatter.format(value);
@@ -60,15 +92,6 @@ class GlobalFunction {
     // print('Sebelum di Format $number');
     final result = number.replaceAll(',', '').trim();
     return result;
-  }
-
-  /// Format Hari
-  static String formatDay(DateTime date, {int type = 2}) {
-    if (type == 1) {
-      return DateFormat.E(appConfig.indonesiaLocale).format(date);
-    } else {
-      return DateFormat.EEEE(appConfig.indonesiaLocale).format(date);
-    }
   }
 
   /// Format : Jam
@@ -85,6 +108,54 @@ class GlobalFunction {
   static String formatHoursMinutesSeconds(DateTime date) {
     final result = DateFormat.Hms(appConfig.indonesiaLocale).format(date);
     return result.replaceAll('.', ':');
+  }
+
+  /// Format Hari
+  static String formatDay(DateTime date, {int type = 2}) {
+    if (type == 1) {
+      return DateFormat.E(appConfig.indonesiaLocale).format(date);
+    } else {
+      return DateFormat.EEEE(appConfig.indonesiaLocale).format(date);
+    }
+  }
+
+  /// Format Bulan
+  static String formatMonth(DateTime date, {int type = 1}) {
+    switch (type) {
+      case 1:
+        return DateFormat.M(appConfig.indonesiaLocale).format(date);
+        break;
+      case 2:
+        return DateFormat.MMM(appConfig.indonesiaLocale).format(date);
+        break;
+      case 3:
+        return DateFormat.MMMM(appConfig.indonesiaLocale).format(date);
+        break;
+      default:
+        return DateFormat.MMMM(appConfig.indonesiaLocale).format(date);
+        break;
+    }
+  }
+
+  /// Format Bulan Hari
+  static String formatMonthDay(DateTime date, {int type = 1}) {
+    switch (type) {
+      case 1:
+        return DateFormat.MMMd(appConfig.indonesiaLocale).format(date);
+        break;
+      case 2:
+        return DateFormat.MMMEd(appConfig.indonesiaLocale).format(date);
+        break;
+      case 3:
+        return DateFormat.MMMMd(appConfig.indonesiaLocale).format(date);
+        break;
+      case 4:
+        return DateFormat.MMMMEEEEd(appConfig.indonesiaLocale).format(date);
+        break;
+      default:
+        return DateFormat.MMMMEEEEd(appConfig.indonesiaLocale).format(date);
+        break;
+    }
   }
 
   /// Format : Tahun
@@ -184,13 +255,13 @@ class GlobalFunction {
     }
   }
 
-  ///! Mendapatkan Total Hari Pada bulan X
+  ///* Mendapatkan Total Hari Pada bulan X
   static int totalDaysOfMonth(int year, int month) {
     final result = (month < 12) ? DateTime(year, month + 1, 0) : DateTime(year + 1, 1, 0);
     return result.day;
   }
 
-  ///! Mendapatkan Total Jumlah Kerja yang sudah dikurangi weekend (Sabtu,Minggu).
+  ///* Mendapatkan Total Jumlah Kerja yang sudah dikurangi weekend (Sabtu,Minggu).
   static int totalWeekDayOfMonth(int year, int month, {int day = 1}) {
     final totalDayOfMonth = totalDaysOfMonth(year, month);
     var result = 0;
@@ -206,17 +277,31 @@ class GlobalFunction {
     return result;
   }
 
+  static int getTotalLenghtWord(String string, {int substract}) {
+    var length = string.split(' ').length;
+    int result;
+    if (substract != null) {
+      if (length - substract <= 0) {
+        result = 1;
+      } else {
+        result = length - substract;
+      }
+    } else {
+      result = length;
+    }
+
+    return result;
+  }
+
   static Future<PackageInfo> packageInfo() async {
     final result = await PackageInfo.fromPlatform();
     return result;
   }
 
-  ///! Memunculkan Toast
+  ///* Memunculkan Toast
 
   static Future<void> showToast({
     @required String message,
-    bool isError = false,
-    bool isSuccess = false,
     bool isLongDuration = false,
     Color backgroungColor,
     Color textColor,
@@ -267,7 +352,7 @@ class GlobalFunction {
     await Fluttertoast.cancel();
   }
 
-  ///! Ketuk 2 Kali Untuk Keluar
+  ///* Ketuk 2 Kali Untuk Keluar
   static Future<bool> doubleTapToExit({
     @required GlobalKey<ScaffoldState> scaffoldKey,
   }) async {
@@ -282,33 +367,6 @@ class GlobalFunction {
     } else {
       return Future.value(true);
     }
-  }
-
-  ///! Get First Character From Every Word
-  static String getFirstCharacterErveryWord({String string, int limitTo}) {
-    var result;
-    if (string.isNotEmpty) {
-      result = string.trim().split(' ').map((e) => e[0]).take(limitTo).join();
-    } else {
-      result = '';
-    }
-    return result;
-  }
-
-  static int getTotalLenghtWord(String string, {int substract}) {
-    var length = string.split(' ').length;
-    int result;
-    if (substract != null) {
-      if (length - substract <= 0) {
-        result = 1;
-      } else {
-        result = length - substract;
-      }
-    } else {
-      result = length;
-    }
-
-    return result;
   }
 
   static Color getRandomColor() {
