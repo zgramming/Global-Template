@@ -371,7 +371,7 @@ class GlobalFunction {
 
   static Color getRandomColor() {
     final _random = Random();
-    var color = colorPallete.arr_color[_random.nextInt(colorPallete.arr_color.length)];
+    var color = colorPallete.arrColor[_random.nextInt(colorPallete.arrColor.length)];
     return color;
   }
 }

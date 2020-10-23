@@ -35,7 +35,7 @@ class BottomNavigationBarCustom extends StatefulWidget {
   final List<Widget> iconBottomNavigation;
 
   /// Title BottomNavigation
-  final List<Widget> titleBottomNavigation;
+  final List<String> titleBottomNavigation;
 
   /// Jumlah Halaman , Icon , Tittle Icon Yang Akan Ditampilkan. Minimal 2 Maximal 5 !
   final int totalScreen;
@@ -165,7 +165,7 @@ class _BottomNavigationBarCustomState extends State<BottomNavigationBarCustom> {
         i,
         BottomNavigationBarItem(
           icon: widget.iconBottomNavigation[i] ?? Icon(Icons.home),
-          title: widget.titleBottomNavigation[i] ?? Text('Icon Title $i'),
+          label: widget.titleBottomNavigation[i] ?? 'Icon Title $i',
           // activeIcon: CircleAvatar()
           // activeIcon: Text('active'),
         ),

@@ -53,7 +53,7 @@ class ColorPallete {
   Color ob2Color = const Color(0xFFB83282);
   Color ob3Color = const Color(0xFF3282B8);
 
-  List<Color> arr_color = [
+  List<Color> arrColor = [
     Color(0xFFfb5607),
     Color(0xFFff006e),
     Color(0xFF8338ec),
