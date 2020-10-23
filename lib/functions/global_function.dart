@@ -15,6 +15,8 @@ enum ToastType { Success, Error, Normal }
 
 class GlobalFunction {
   static final DefaultCacheManager _cacheManager = DefaultCacheManager();
+  static final colorPallete = ColorPallete();
+  static final appConfig = AppConfig();
 
   /// Fungsi untuk Meng-compare 2 versi dari server dan aplikasi , jika cocok tampilkan halaman Splash || Halaman Update
   Widget compareVersion({
