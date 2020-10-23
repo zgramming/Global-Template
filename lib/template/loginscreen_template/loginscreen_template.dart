@@ -29,6 +29,8 @@ class LoginScreenTemplate extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final colorPallete = ColorPallete();
+
     return Stack(
       fit: StackFit.expand,
       children: <Widget>[

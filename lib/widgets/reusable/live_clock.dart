@@ -12,6 +12,8 @@ class LiveClock extends StatefulWidget {
 
 class _LiveClockState extends State<LiveClock> {
   Stream<DateTime> liveClock;
+  final colorPallete = ColorPallete();
+
   @override
   void initState() {
     super.initState();
