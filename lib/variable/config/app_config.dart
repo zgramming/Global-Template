@@ -1,16 +1,29 @@
 class AppConfig {
   final String indonesiaLocale = 'id_ID';
 
-  static const urlImageAsset = 'asset/images';
-  static const urlLogoAsset = 'logo_peduli_tugas.png';
-  static const defaultImageNetwork = 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png';
+  String _urlImageAsset = 'asset/images',
+      _urlLogoAsset = 'logo.png',
+      _headerFont = 'LexendDeca',
+      _defaultFont = 'Poppins',
+      _defaultImageNetwork = 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png';
 
-  static const headerFont = 'LexendDeca';
-  static const defaultFont = 'Poppins';
+  String get headerFont => _headerFont;
+  String get defaultFont => _defaultFont;
+  String get defaultImageNetwork => _defaultImageNetwork;
+  String get urlImageAsset => _urlImageAsset;
+  String get urlLogoAsset => _urlLogoAsset;
 
-  static const MENU_DOSEN = 'menu_dosen';
-  static const MENU_PELAJARAN = 'menu_pelajaran';
-  static const MENU_TUGAS = 'menu_tugas';
+  void configuration({
+    String headerFont,
+    String defaultFont,
+    String defaultImageNetwork,
+    String urlImageAsset,
+    String urlLogoAsset,
+  }) {
+    _headerFont = headerFont;
+    _defaultFont = defaultFont;
+    _defaultImageNetwork = defaultImageNetwork;
+    _urlImageAsset = urlImageAsset;
+    _urlLogoAsset = urlLogoAsset;
+  }
 }
-
-final appConfig = AppConfig();
