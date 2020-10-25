@@ -43,6 +43,8 @@ class ShowImageNetwork extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorPallete = ColorPallete();
+
     final image = Padding(
       padding: padding,
       child: ClipRRect(
