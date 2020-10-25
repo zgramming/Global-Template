@@ -4,8 +4,8 @@ import 'package:global_template/global_template.dart';
 class ShowImageAsset extends StatelessWidget {
   const ShowImageAsset({
     @required this.imageUrl,
-    this.imageCircleRadius = 35,
     this.imageSize,
+    this.imageCircleRadius = 35,
     this.isCircle = false,
     this.circleBacgroundColor,
     this.circleBorderColor,
