@@ -24,8 +24,6 @@ class ActionModalBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorPallete = ColorPallete();
-
     bool deleteIsVisible;
     bool editIsVisible;
 

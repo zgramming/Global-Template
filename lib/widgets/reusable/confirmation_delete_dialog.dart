@@ -23,8 +23,6 @@ class ConfirmationDeleteDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorPallete = ColorPallete();
-
     return AlertDialog(
       title: title ?? Text('Konfirmasi hapus'),
       actions: [

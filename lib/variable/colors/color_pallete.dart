@@ -157,3 +157,5 @@ class ColorPallete {
     this.onboardingColor3 = onboardingColor3 ?? Color(0xFF3282B8);
   }
 }
+
+final colorPallete = ColorPallete();

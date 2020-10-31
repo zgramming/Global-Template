@@ -46,3 +46,5 @@ class AppConfig {
     this.headersAPI = headersAPI ?? {'Content-Type': 'application/x-www-form-urlencoded'};
   }
 }
+
+final appConfig = AppConfig();

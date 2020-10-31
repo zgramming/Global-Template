@@ -40,8 +40,6 @@ class ButtonCustom extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    final colorPallete = ColorPallete();
-
     final defaultButton = RaisedButton(
       onPressed: onPressed,
       disabledColor: disabledColor,
