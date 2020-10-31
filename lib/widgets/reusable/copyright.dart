@@ -39,7 +39,6 @@ class _CopyRightVersionState extends State<CopyRightVersion> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            // mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
                 '${packageInfo.appName} | Version ${packageInfo.version}',

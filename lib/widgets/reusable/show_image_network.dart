@@ -7,7 +7,7 @@ class ShowImageNetwork extends StatelessWidget {
     @required this.imageUrl,
     this.imageCircleRadius = 35,
     this.imageRadius = 10,
-    this.imageSize,
+    @required this.imageSize,
     this.isCircle = false,
     this.padding = const EdgeInsets.all(0),
     this.alignment = Alignment.center,

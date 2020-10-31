@@ -21,16 +21,18 @@ class SplashScreenTemplate extends StatefulWidget {
 }
 
 class _SplashScreenTemplateState extends State<SplashScreenTemplate> {
-  void navigationPage() => Future.delayed(
-        const Duration(milliseconds: 500),
-        () {
-          if (mounted) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: widget.navigateAfterSplashScreen),
-            );
-          }
-        },
-      );
+  Future<void> navigationPage() async {
+    Future.delayed(
+      const Duration(milliseconds: 500),
+      () {
+        if (mounted) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: widget.navigateAfterSplashScreen),
+          );
+        }
+      },
+    );
+  }
 
   @override
   void initState() {
