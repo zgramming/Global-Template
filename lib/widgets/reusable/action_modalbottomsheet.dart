@@ -13,10 +13,10 @@ class ActionModalBottomSheet extends StatelessWidget {
   final VoidCallback onDelete;
 
   ActionModalBottomSheet({
+    @required this.typeAction,
     this.align = WrapAlignment.end,
     this.spacing = 20.0,
     this.children = const <ActionCircleButton>[],
-    this.typeAction = TypeAction.DeleteAndEdit,
     this.textDirection = TextDirection.ltr,
     this.onDelete,
     this.onEdit,

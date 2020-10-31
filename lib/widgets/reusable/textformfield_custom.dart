@@ -46,7 +46,10 @@ class TextFormFieldCustom extends StatefulWidget {
 
   final EdgeInsetsGeometry padding;
 
+  /// Icon sebelah kiri
   final Widget prefixIcon;
+
+  /// Icon sebelah kanan
   final Widget suffixIcon;
 
   final String hintText;

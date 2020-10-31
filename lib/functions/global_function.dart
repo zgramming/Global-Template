@@ -369,6 +369,26 @@ class GlobalFunction {
     }
   }
 
+  ///* Memunculkan loading modal dialog
+  static Future showDialogLoading(BuildContext context, {String title = 'Sedang Proses'}) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      child: WillPopScope(
+        onWillPop: () async => false,
+        child: AlertDialog(
+          title: Text(title),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircularProgressIndicator(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   static Color getRandomColor() {
     final _random = Random();
     var color = colorPallete.arrColor[_random.nextInt(colorPallete.arrColor.length)];

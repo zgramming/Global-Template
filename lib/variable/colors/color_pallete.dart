@@ -1,57 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:global_template/global_template.dart';
 
 class ColorPallete {
-  Color white = const Color(0xFFFFFFFF);
-  Color black = const Color(0xFF222831);
-  Color red = const Color(0xFFd63447);
-  Color blue = const Color(0xFF1b6ca8);
-  Color green = const Color(0xFF21bf73);
-  Color transparent = const Color(0x00000000);
-  Color weekEnd = const Color(0xFFf0134d);
-  Color darkGrey = const Color(0xFF121212);
-  Color darkGrey12 = const Color(0xFF121212).withOpacity(.12);
-  Color darkGrey26 = const Color(0xFF121212).withOpacity(.26);
-  Color darkGrey38 = const Color(0xFF121212).withOpacity(.38);
-  Color darkGrey45 = const Color(0xFF121212).withOpacity(.45);
-  Color darkGrey54 = const Color(0xFF121212).withOpacity(.54);
-  Color darkGrey87 = const Color(0xFF121212).withOpacity(.87);
-  Color darkGreyAccent = const Color(0xFF222831);
-  Color darkGreyAccent2 = const Color(0xFF525252);
-  Color darkGreyAccent3 = const Color(0xFF414141);
-  Color darkGreyAccent4 = const Color(0xFF313131);
+  Color primaryColor;
+  Color accentColor;
 
-  /// Grey
-  Color grey = const Color(0xFF969696);
-  Color greyTransparent = const Color(0xFFEAEAEA);
+  Color white;
+  Color black;
+  Color red;
+  Color blue;
+  Color green;
+  Color transparent;
+  Color weekEnd;
+  Color darkGrey;
+  Color darkGrey12;
+  Color darkGrey26;
+  Color darkGrey38;
+  Color darkGrey45;
+  Color darkGrey54;
+  Color darkGrey87;
+  Color darkGreyAccent;
+  Color darkGreyAccent2;
+  Color darkGreyAccent3;
+  Color darkGreyAccent4;
+  Color grey;
+  Color greyTransparent;
+  Color backgroundColor;
+  Color backgroundColor1;
+  Color backgroundColor2;
+  Color backgroundColor3;
+  Color backgroundColor4;
+  Color backgroundColor5;
+  Color backgroundDarkColor;
+  Color accentDarkColor;
+  Color onboardingColor1;
+  Color onboardingColor2;
+  Color onboardingColor3;
 
-  ///Primary Color
-  Color primaryColor = const Color(0xff4361ee);
-
-  ///Monochromatic Color
-  Color monochromaticColor = const Color(0xff153AE9);
-
-  ///Accent Color
-  Color accentColor = const Color(0xffEED043);
-
-  /// Scaffold Color
-  Color backgroundColor = const Color(0xFFf9f9f9);
-  Color backgroundColor1 = const Color(0xFFfcfefe);
-  Color backgroundColor2 = const Color(0xFFF8FCFF);
-  Color backgroundColor3 = const Color(0xFFf6f6f6);
-  Color backgroundColor4 = const Color(0xFFfbfbfb);
-  Color backgroundColor5 = const Color(0xFFf2f2f2);
-
-  /// Scaffold Dark Color
-  Color backgroundDarkColor = const Color(0xFF003545);
-
-  // Color darkModeColor = const Color(0xff121212);
-  Color accentDarkModeColor = const Color(0xFFf638dc);
-
-  // Color For Onboarding Screen
-  Color ob1Color = const Color(0xFF82B832);
-  Color ob2Color = const Color(0xFFB83282);
-  Color ob3Color = const Color(0xFF3282B8);
+  ColorPallete({
+    this.primaryColor,
+    this.accentColor,
+    this.white,
+    this.black,
+    this.red,
+    this.blue,
+    this.green,
+    this.transparent,
+    this.weekEnd,
+    this.darkGrey,
+    this.darkGrey12,
+    this.darkGrey26,
+    this.darkGrey38,
+    this.darkGrey45,
+    this.darkGrey54,
+    this.darkGrey87,
+    this.darkGreyAccent,
+    this.darkGreyAccent2,
+    this.darkGreyAccent3,
+    this.darkGreyAccent4,
+    this.grey,
+    this.greyTransparent,
+    this.backgroundColor,
+    this.backgroundColor1,
+    this.backgroundColor2,
+    this.backgroundColor3,
+    this.backgroundColor4,
+    this.backgroundColor5,
+    this.backgroundDarkColor,
+    this.accentDarkColor,
+    this.onboardingColor1,
+    this.onboardingColor2,
+    this.onboardingColor3,
+  });
 
   List<Color> arrColor = [
     Color(0xFFfb5607),
@@ -68,27 +87,74 @@ class ColorPallete {
     Color(0xFFf07167),
   ];
 
-  static ThemeData dynamicTheme(bool isDarkMode, BuildContext context) {
-    return ThemeData(
-      primaryColor: colorPallete.primaryColor,
-      accentColor: colorPallete.accentColor,
-      fontFamily: AppConfig.defaultFont,
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-      buttonTheme:
-          ButtonThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-      cardTheme: CardTheme(
-        elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
-      scaffoldBackgroundColor: isDarkMode ? colorPallete.darkGrey : colorPallete.backgroundColor2,
-      brightness: isDarkMode ? Brightness.dark : Brightness.light,
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: isDarkMode ? colorPallete.darkGreyAccent2 : colorPallete.accentColor,
-        foregroundColor: isDarkMode ? colorPallete.white : colorPallete.black,
-      ),
-    );
+  void configuration({
+    Color primaryColor,
+    Color accentColor,
+    Color white,
+    Color black,
+    Color red,
+    Color blue,
+    Color green,
+    Color transparent,
+    Color weekEnd,
+    Color darkGrey,
+    Color darkGrey12,
+    Color darkGrey26,
+    Color darkGrey38,
+    Color darkGrey45,
+    Color darkGrey54,
+    Color darkGrey87,
+    Color darkGreyAccent,
+    Color darkGreyAccent2,
+    Color darkGreyAccent3,
+    Color darkGreyAccent4,
+    Color grey,
+    Color greyTransparent,
+    Color backgroundColor,
+    Color backgroundColor1,
+    Color backgroundColor2,
+    Color backgroundColor3,
+    Color backgroundColor4,
+    Color backgroundColor5,
+    Color backgroundDarkColor,
+    Color accentDarkColor,
+    Color onboardingColor1,
+    Color onboardingColor2,
+    Color onboardingColor3,
+  }) {
+    this.primaryColor = primaryColor ?? Color(0xFF3A86FF);
+    this.accentColor = accentColor ?? Color(0xFFFFB33A);
+    this.white = white ?? Color(0xFFFFFFFF);
+    this.black = black ?? Color(0xFF222831);
+    this.red = red ?? Color(0xFFd63447);
+    this.blue = blue ?? Color(0xFF1b6ca8);
+    this.green = green ?? Color(0xFF21bf73);
+    this.transparent = transparent ?? Color(0x00000000);
+    this.weekEnd = weekEnd ?? Color(0xFFf0134d);
+    this.darkGrey = darkGrey ?? Color(0xFF121212);
+    this.darkGrey12 = darkGrey12 ?? Color(0xFF121212).withOpacity(.12);
+    this.darkGrey26 = darkGrey26 ?? Color(0xFF121212).withOpacity(.26);
+    this.darkGrey38 = darkGrey38 ?? Color(0xFF121212).withOpacity(.38);
+    this.darkGrey45 = darkGrey45 ?? Color(0xFF121212).withOpacity(.45);
+    this.darkGrey54 = darkGrey54 ?? Color(0xFF121212).withOpacity(.54);
+    this.darkGrey87 = darkGrey87 ?? Color(0xFF121212).withOpacity(.87);
+    this.darkGreyAccent = darkGreyAccent ?? Color(0xFF222831);
+    this.darkGreyAccent2 = darkGreyAccent2 ?? Color(0xFF525252);
+    this.darkGreyAccent3 = darkGreyAccent3 ?? Color(0xFF414141);
+    this.darkGreyAccent4 = darkGreyAccent4 ?? Color(0xFF313131);
+    this.grey = grey ?? Color(0xFF969696);
+    this.greyTransparent = greyTransparent ?? Color(0xFF3A86FF);
+    this.backgroundColor = backgroundColor ?? Color(0xFFf9f9f9);
+    this.backgroundColor1 = backgroundColor1 ?? Color(0xFFfcfefe);
+    this.backgroundColor2 = backgroundColor2 ?? Color(0xFFF8FCFF);
+    this.backgroundColor3 = backgroundColor3 ?? Color(0xFFf6f6f6);
+    this.backgroundColor4 = backgroundColor4 ?? Color(0xFFfbfbfb);
+    this.backgroundColor5 = backgroundColor5 ?? Color(0xFFf2f2f2);
+    this.backgroundDarkColor = backgroundDarkColor ?? Color(0xFF003545);
+    this.accentDarkColor = accentDarkColor ?? Color(0xFFf638dc);
+    this.onboardingColor1 = onboardingColor1 ?? Color(0xFF82B832);
+    this.onboardingColor2 = onboardingColor2 ?? Color(0xFFB83282);
+    this.onboardingColor3 = onboardingColor3 ?? Color(0xFF3282B8);
   }
 }
 
