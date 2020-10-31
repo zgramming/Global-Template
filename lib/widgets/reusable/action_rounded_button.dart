@@ -28,6 +28,8 @@ class ActionRoundedButton extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final colorPallete = ColorPallete();
+
     return Stack(
       children: [
         Visibility(
