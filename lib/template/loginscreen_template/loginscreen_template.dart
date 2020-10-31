@@ -36,6 +36,8 @@ class LoginScreenTemplate extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final colorPallete = ColorPallete();
+
     return Stack(
       fit: StackFit.expand,
       children: <Widget>[
@@ -70,17 +72,19 @@ class LoginScreenTemplate extends StatelessWidget {
                   Container(
                     alignment: formAlignment,
                     margin: outsideFormMargin,
-                    child: Card(
-                      color: formColor,
-                      margin: formMargin,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: formRadius ?? BorderRadius.circular(8.0),
-                      ),
-                      child: Padding(
-                        padding: formPadding,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: form,
+                    child: SingleChildScrollView(
+                      child: Card(
+                        color: formColor,
+                        margin: formMargin,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: formRadius ?? BorderRadius.circular(8.0),
+                        ),
+                        child: Padding(
+                          padding: formPadding,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: form,
+                          ),
                         ),
                       ),
                     ),
