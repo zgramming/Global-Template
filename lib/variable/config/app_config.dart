@@ -1,16 +1,50 @@
 class AppConfig {
-  final String indonesiaLocale = 'id_ID';
+  String indonesiaLocale;
+  String baseAPIURL;
+  String baseImageURL;
+  String tokenFirebase;
+  String urlImageAsset;
+  String urlLogoAsset;
+  String headerFont;
+  String defaultFont;
+  String defaultImageNetwork;
+  Map<String, String> headersAPI;
 
-  static const urlImageAsset = 'asset/images';
-  static const urlLogoAsset = 'logo_peduli_tugas.png';
-  static const defaultImageNetwork = 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png';
+  AppConfig({
+    this.indonesiaLocale,
+    this.baseAPIURL,
+    this.baseImageURL,
+    this.tokenFirebase,
+    this.urlImageAsset,
+    this.urlLogoAsset,
+    this.headerFont,
+    this.defaultFont,
+    this.defaultImageNetwork,
+    this.headersAPI,
+  });
 
-  static const headerFont = 'LexendDeca';
-  static const defaultFont = 'Poppins';
-
-  static const MENU_DOSEN = 'menu_dosen';
-  static const MENU_PELAJARAN = 'menu_pelajaran';
-  static const MENU_TUGAS = 'menu_tugas';
+  void configuration({
+    String headerFont,
+    String defaultFont,
+    String defaultImageNetwork,
+    String urlImageAsset,
+    String urlLogoAsset,
+    String baseAPIURL,
+    String baseImageURL,
+    String tokenFirebase,
+    Map<String, String> headersAPI,
+  }) {
+    this.headerFont = headerFont ?? 'LexendDeca';
+    this.defaultFont = defaultFont ?? 'Poppins';
+    this.defaultImageNetwork =
+        defaultImageNetwork ?? 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png';
+    this.urlImageAsset = urlImageAsset ?? 'asset/images';
+    this.urlLogoAsset = urlLogoAsset ?? 'logo.png';
+    this.baseAPIURL = baseAPIURL ?? 'http://www.example.com';
+    this.baseImageURL = baseImageURL ?? 'http://www.example.com/images';
+    this.tokenFirebase = tokenFirebase ?? 'exampletoken';
+    this.headersAPI = headersAPI ?? {'Content-Type': 'application/x-www-form-urlencoded'};
+  }
 }
 
 final appConfig = AppConfig();
