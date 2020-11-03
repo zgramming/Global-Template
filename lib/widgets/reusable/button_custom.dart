@@ -32,7 +32,7 @@ class ButtonCustom extends StatelessWidget {
   final ShapeBorder shape;
   final TextStyle textStyle;
   final bool buttonPlusIcon;
-  final Function onPressed;
+  final VoidCallback onPressed;
   final String buttonTitle;
   final Widget icon;
   final EdgeInsetsGeometry padding;
