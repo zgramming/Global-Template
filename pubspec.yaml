@@ -5,7 +5,7 @@ author: null
 homepage: null
 
 environment:
-  sdk: ">=2.8.0 <3.0.0"
+  sdk: ">=2.9.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -17,6 +17,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: 
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -52,4 +53,3 @@ flutter: null
 #
 # For details regarding fonts in packages, see
 # https://flutter.dev/custom-fonts/#from-packages
-
