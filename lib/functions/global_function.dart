@@ -84,7 +84,7 @@ class GlobalFunction {
   static String formatNumber(int value, [String string = '']) {
     final formatter = NumberFormat('#,###');
     final result = formatter.format(value);
-    return '$result $string';
+    return result;
   }
 
   /// Fungsi Untuk meng-unformat angka . Dari 200,000 => 200000
@@ -393,6 +393,48 @@ class GlobalFunction {
     final _random = Random();
     var color = colorPallete.arrColor[_random.nextInt(colorPallete.arrColor.length)];
     return color;
+  }
+
+  ///* Check if value in list already exist/not
+  static T isValueExistObject<T>(
+    List<T> checkedList,
+    T newValue, {
+    @required bool Function(T element) check,
+  }) {
+    var isExist = false;
+
+    for (T list in checkedList) {
+      if (check(list)) {
+        isExist = true;
+        break;
+      } else {
+        isExist = false;
+      }
+    }
+
+    final result = isExist ? null : newValue;
+    return result;
+  }
+
+  ///* How method where & firstWhere under the hood
+  ///* Olny for testing
+  List<T> where<T>(List<T> items, bool Function(T) f) {
+    var results = <T>[];
+    for (var item in items) {
+      if (f(item)) {
+        results.add(item);
+      }
+    }
+    return results;
+  }
+
+  T firstWhere<T>(List<T> items, {@required bool Function(T) f, @required T Function() orElse}) {
+    for (final item in items) {
+      if (f(item)) {
+        return item;
+      }
+    }
+    return orElse();
   }
 }
 
