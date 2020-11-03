@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ColorPallete {
   Color primaryColor;
   Color accentColor;
+  Color monochromaticColor;
 
   Color white;
   Color black;
@@ -39,6 +40,7 @@ class ColorPallete {
   ColorPallete({
     this.primaryColor,
     this.accentColor,
+    this.monochromaticColor,
     this.white,
     this.black,
     this.red,
@@ -87,9 +89,11 @@ class ColorPallete {
     Color(0xFFf07167),
   ];
 
+  /// Visit this link if you want get generate nice color [https://mycolor.space/]
   void configuration({
     Color primaryColor,
     Color accentColor,
+    Color monochromaticColor,
     Color white,
     Color black,
     Color red,
@@ -124,6 +128,7 @@ class ColorPallete {
   }) {
     this.primaryColor = primaryColor ?? Color(0xFF3A86FF);
     this.accentColor = accentColor ?? Color(0xFFFFB33A);
+    this.monochromaticColor = monochromaticColor ?? Color(0xFFFFFFFF);
     this.white = white ?? Color(0xFFFFFFFF);
     this.black = black ?? Color(0xFF222831);
     this.red = red ?? Color(0xFFd63447);
