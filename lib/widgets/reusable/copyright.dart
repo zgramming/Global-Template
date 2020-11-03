@@ -4,7 +4,7 @@ import 'package:package_info/package_info.dart';
 
 class CopyRightVersion extends StatefulWidget {
   CopyRightVersion({
-    this.copyRight = 'Copyright \u00a9 Zeffry Reynando',
+    this.copyRight,
     this.colorText = Colors.white,
     this.backgroundColor,
   });
@@ -47,7 +47,8 @@ class _CopyRightVersionState extends State<CopyRightVersion> {
               ),
               const SizedBox(height: 5),
               Text(
-                widget.copyRight,
+                widget.copyRight ??
+                    'Copyright ${GlobalFunction.formatYear(DateTime.now())} \u00a9 Zeffry Reynando',
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
               ),
