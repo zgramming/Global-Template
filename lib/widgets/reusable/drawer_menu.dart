@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class DrawerMenu extends StatelessWidget {
   final VoidCallback onTap;
   final String title;
-  final IconData icon;
+  final Widget trailing;
   final bool showDivider;
   DrawerMenu({
     this.title = 'Menu',
-    this.icon = Icons.home,
+    this.trailing = const Icon(Icons.home),
     this.showDivider = false,
     this.onTap,
   });
@@ -18,7 +18,7 @@ class DrawerMenu extends StatelessWidget {
         ListTile(
           onTap: onTap,
           title: Text(title),
-          trailing: Icon(icon),
+          trailing: trailing,
         ),
         if (showDivider) Divider(),
       ],
