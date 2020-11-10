@@ -15,10 +15,16 @@ class TextFormFieldCustom extends StatefulWidget {
     this.inputFormatter,
     this.onFieldSubmitted,
     this.onChanged,
-    this.radius = 8,
+    this.validator,
     this.hintText,
     this.labelText,
     this.hintStyle,
+    this.errorBorder,
+    this.errorMaxLines = 2,
+    this.errorStyle,
+    this.errorMessage,
+    this.onSaved,
+    this.radius = 8,
     this.padding = EdgeInsets.zero,
     this.autoFocus = false,
     this.centerText = false,
@@ -26,17 +32,14 @@ class TextFormFieldCustom extends StatefulWidget {
     this.isPassword = false,
     this.disableOutlineBorder = true,
     this.isEnabled = true,
-    this.isValidatorEnable = true,
     this.backgroundColor = Colors.white,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
-    this.onSaved,
   });
   final bool isPassword;
   final bool isEnabled;
   final bool isDone;
   final bool centerText;
-  final bool isValidatorEnable;
   final bool disableOutlineBorder;
   final bool autoFocus;
 
@@ -55,14 +58,20 @@ class TextFormFieldCustom extends StatefulWidget {
   final String hintText;
   final String labelText;
   final String initialValue;
+  final String errorMessage;
 
   final int minLines;
   final int maxLines;
+  final int errorMaxLines;
 
   final double radius;
 
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
+
+  final TextStyle errorStyle;
+
+  final InputBorder errorBorder;
 
   final FocusNode focusNode;
 
@@ -72,6 +81,7 @@ class TextFormFieldCustom extends StatefulWidget {
 
   final TextStyle hintStyle;
 
+  final Function(String value) validator;
   final Function(String value) onFieldSubmitted;
   final Function(String value) onChanged;
   final Function(String value) onSaved;
@@ -104,6 +114,10 @@ class _TextFormFieldCustomState extends State<TextFormFieldCustom> {
             prefixIcon: widget.isPassword ? const Icon(Icons.lock) : widget.prefixIcon,
             hintText: widget.hintText,
             labelText: widget.labelText,
+            errorMaxLines: widget.errorMaxLines,
+            errorStyle: widget.errorStyle,
+            errorBorder: widget.errorBorder,
+            errorText: widget.errorMessage,
             border: widget.disableOutlineBorder
                 ? null
                 : OutlineInputBorder(
@@ -132,14 +146,7 @@ class _TextFormFieldCustomState extends State<TextFormFieldCustom> {
           focusNode: widget.focusNode,
           onFieldSubmitted: widget.onFieldSubmitted,
           onChanged: widget.onChanged,
-          validator: widget.isValidatorEnable
-              ? (value) {
-                  if (value.isEmpty || value == null) {
-                    return '${widget.labelText} tidak boleh kosong ';
-                  }
-                  return null;
-                }
-              : null,
+          validator: widget.validator ?? null,
           onSaved: widget.onSaved,
         ),
         if (widget.isPassword) ...[
