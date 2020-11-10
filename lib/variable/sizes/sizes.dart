@@ -6,11 +6,9 @@ class SizesDevice {
   double width(BuildContext context) => MediaQuery.of(context).size.width;
   double height(BuildContext context) => MediaQuery.of(context).size.height;
 
-  double statusBarHeight(BuildContext context) =>
-      MediaQuery.of(context).padding.top;
+  double statusBarHeight(BuildContext context) => MediaQuery.of(context).padding.top;
 
-  double screenHeightMinusAppBar(BuildContext context) =>
-      sizes.height(context) - kToolbarHeight;
+  double screenHeightMinusAppBar(BuildContext context) => sizes.height(context) - kToolbarHeight;
 
   double screenHeightMinusStatusBar(BuildContext context) =>
       sizes.height(context) - statusBarHeight(context);
@@ -18,8 +16,13 @@ class SizesDevice {
   double screenHeightMinusAppBarMinusStatusBar(BuildContext context) =>
       sizes.height(context) - kToolbarHeight - statusBarHeight(context);
 
-  double keyboardHeight(BuildContext context) =>
-      MediaQuery.of(context).viewInsets.bottom;
+  double keyboardHeight(BuildContext context) => MediaQuery.of(context).viewInsets.bottom;
+
+  // double smallestDimension(BuildContext context) => MediaQuery.of(context).size.shortestSide;
+  MediaQueryData smallestDimension(BuildContext context) =>
+      MediaQueryData.fromWindow(WidgetsBinding.instance.window);
+
+  bool isMobileLayout(BuildContext context) => smallestDimension(context).size.shortestSide < 600;
 
   double dp4(BuildContext context) => MediaQuery.of(context).size.width / 100;
   double dp6(BuildContext context) => MediaQuery.of(context).size.width / 70;
