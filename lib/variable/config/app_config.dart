@@ -32,7 +32,7 @@ class AppConfig {
   AppConfig({
     /// id
 
-    this.indonesiaLocale,
+    this.indonesiaLocale = 'id_ID',
     this.baseAPIURL,
     this.baseImageURL,
     this.tokenFirebase,
@@ -76,8 +76,8 @@ class AppConfig {
     this.defaultFont = defaultFont ?? 'Poppins';
     this.defaultImageNetwork =
         defaultImageNetwork ?? 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png';
-    this.urlImageAsset = urlImageAsset ?? 'asset/images';
-    this.urlLogoAsset = urlLogoAsset ?? 'logo.png';
+    this.urlImageAsset = urlImageAsset ?? 'assets/images';
+    this.urlLogoAsset = urlLogoAsset ?? 'logo_transparent.png';
     this.baseAPIURL = baseAPIURL ?? 'http://www.example.com';
     this.baseImageURL = baseImageURL ?? 'http://www.example.com/images';
     this.tokenFirebase = tokenFirebase ?? 'exampletoken';
