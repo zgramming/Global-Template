@@ -148,7 +148,7 @@ class ColorPallete {
     this.darkGreyAccent3 = darkGreyAccent3 ?? Color(0xFF414141);
     this.darkGreyAccent4 = darkGreyAccent4 ?? Color(0xFF313131);
     this.grey = grey ?? Color(0xFF969696);
-    this.greyTransparent = greyTransparent ?? Color(0xFF3A86FF);
+    this.greyTransparent = greyTransparent ?? Color(0xFF969696);
     this.backgroundColor = backgroundColor ?? Color(0xFFf9f9f9);
     this.backgroundColor1 = backgroundColor1 ?? Color(0xFFfcfefe);
     this.backgroundColor2 = backgroundColor2 ?? Color(0xFFF8FCFF);
