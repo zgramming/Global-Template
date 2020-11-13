@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
-class ReusableRequestServer<T> {
-  Future<T> requestServer(
+class ReusableRequestServer {
+  static Future<T> requestServer<T>(
     FutureOr<T> Function() requestServer, {
     Duration durationTimeout = const Duration(seconds: 30),
   }) async {
@@ -21,4 +21,4 @@ class ReusableRequestServer<T> {
   }
 }
 
-final ReusableRequestServer reusableRequestServer = ReusableRequestServer();
+// final ReusableRequestServer reusableRequestServer = ReusableRequestServer();

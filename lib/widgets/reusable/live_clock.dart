@@ -39,7 +39,7 @@ class _LiveClockState extends State<LiveClock> {
                 text: GlobalFunction.formatYearMonthDaySpecific(DateTime.now(), type: 3),
                 style: widget.textStyle ?? TextStyle(color: colorPallete.black),
                 children: [
-                  TextSpan(text: ' ${GlobalFunction.formatHoursMinutes(snapshot.data)}'),
+                  TextSpan(text: ' ${GlobalFunction.formatHoursMinutesSeconds(snapshot.data)}'),
                 ]),
             textAlign: TextAlign.center,
           );

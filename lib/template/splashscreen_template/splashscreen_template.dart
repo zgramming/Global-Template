@@ -16,6 +16,7 @@ class SplashScreenTemplate extends StatefulWidget {
   final WidgetBuilder navigateAfterSplashScreen;
   final Color backgroundColor;
   final CopyRightVersion copyRightVersion;
+
   @override
   _SplashScreenTemplateState createState() => _SplashScreenTemplateState();
 }
