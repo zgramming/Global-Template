@@ -7,10 +7,14 @@ class CopyRightVersion extends StatefulWidget {
     this.copyRight,
     this.colorText = Colors.white,
     this.backgroundColor,
+    this.showCopyRight = true,
+    this.padding = const EdgeInsets.all(16.0),
   });
   final String copyRight;
   final Color colorText;
   final Color backgroundColor;
+  final bool showCopyRight;
+  final EdgeInsetsGeometry padding;
   @override
   _CopyRightVersionState createState() => _CopyRightVersionState();
 }
@@ -36,7 +40,7 @@ class _CopyRightVersionState extends State<CopyRightVersion> {
       child: Container(
         color: widget.backgroundColor,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: widget.padding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -46,12 +50,13 @@ class _CopyRightVersionState extends State<CopyRightVersion> {
                 style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 5),
-              Text(
-                widget.copyRight ??
-                    'Copyright ${GlobalFunction.formatYear(DateTime.now())} \u00a9 Zeffry Reynando',
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
-              ),
+              if (widget.showCopyRight)
+                Text(
+                  widget.copyRight ??
+                      'Copyright ${GlobalFunction.formatYear(DateTime.now())} \u00a9 Zeffry Reynando',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
+                ),
             ],
           ),
         ),
