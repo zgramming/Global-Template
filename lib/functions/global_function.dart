@@ -16,31 +16,19 @@ enum ToastType { Success, Error, Normal }
 class GlobalFunction {
   static final DefaultCacheManager _cacheManager = DefaultCacheManager();
 
-  /// Fungsi untuk Meng-compare 2 versi dari server dan aplikasi , jika cocok tampilkan halaman Splash || Halaman Update
-  Widget compareVersion({
+  /// Fungsi untuk Meng-compare 2 Build versi dari server dan aplikasi.
+  /// Akan return [TRUE] jika aplikasi sudah terbaru sebaliknya [FALSE]
+  static bool isLatestVersion({
     /// Versi Aplikasi di Mobile
-    @required String currentVersion,
+    @required int currentBuildNumber,
 
     /// Versi Aplikasi Dari Server
-    @required String newestVersion,
-
-    /// Menampilkan Halaman UpdateScreen
-    @required Widget updateScreen,
-
-    /// Menampilkan Halaman SplashScreen
-    @required Widget splashScreen,
+    @required int newestBuildNumber,
   }) {
-    final splitNVersion = newestVersion.toLowerCase().trim().split('-');
-    final splitCVersion = currentVersion.toLowerCase().trim().split('-');
-    final nVersion = splitNVersion[1];
-    final cVersion = splitCVersion[1];
-    // print('$newestVersion ||| $currentVersion');
-    // print('$nVersion ||| $cVersion');
-    if (nVersion != cVersion) {
-      return updateScreen;
-    } else {
-      return splashScreen;
+    if (currentBuildNumber >= newestBuildNumber) {
+      return true;
     }
+    return false;
   }
 
   static void clearCacheApp() {
