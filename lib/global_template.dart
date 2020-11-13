@@ -32,6 +32,8 @@ export './functions/global_function.dart';
 export './functions/reusable_request_server.dart';
 
 export './template/splashscreen_template/splashscreen_template.dart';
+export './template/splashscreen_template/initial_splash_template.dart';
+
 export './template/loginscreen_template/loginscreen_template.dart';
 
 export './extension/group_by.dart';
