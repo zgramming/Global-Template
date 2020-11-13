@@ -20,12 +20,17 @@ class TextFormFieldCustom extends StatefulWidget {
     this.labelText,
     this.hintStyle,
     this.errorBorder,
-    this.errorMaxLines = 2,
     this.errorStyle,
     this.errorMessage,
     this.onSaved,
+    this.textStyle,
+    this.prefixTextStyle,
+    this.suffixTextStyle,
+    this.textCapitalization = TextCapitalization.none,
+    this.errorMaxLines = 2,
     this.radius = 8,
     this.padding = EdgeInsets.zero,
+    this.readOnly = false,
     this.autoFocus = false,
     this.centerText = false,
     this.isDone = false,
@@ -42,6 +47,7 @@ class TextFormFieldCustom extends StatefulWidget {
   final bool centerText;
   final bool disableOutlineBorder;
   final bool autoFocus;
+  final bool readOnly;
 
   final Color backgroundColor;
   final Color borderColor;
@@ -70,6 +76,11 @@ class TextFormFieldCustom extends StatefulWidget {
   final TextInputAction textInputAction;
 
   final TextStyle errorStyle;
+  final TextStyle textStyle;
+  final TextStyle prefixTextStyle;
+  final TextStyle suffixTextStyle;
+
+  final TextCapitalization textCapitalization;
 
   final InputBorder errorBorder;
 
@@ -98,6 +109,9 @@ class _TextFormFieldCustomState extends State<TextFormFieldCustom> {
       alignment: Alignment.centerRight,
       children: [
         TextFormField(
+          style: widget.textStyle,
+          readOnly: widget.readOnly,
+          textCapitalization: widget.textCapitalization,
           autofocus: widget.autoFocus,
           controller: widget.controller,
           textAlign: widget.centerText ? TextAlign.center : TextAlign.left,
@@ -107,6 +121,8 @@ class _TextFormFieldCustomState extends State<TextFormFieldCustom> {
           minLines: widget.minLines,
           maxLines: widget.isPassword ? 1 : widget.maxLines,
           decoration: InputDecoration(
+            suffixStyle: widget.suffixTextStyle,
+            prefixStyle: widget.prefixTextStyle,
             isDense: true,
             fillColor: widget.disableOutlineBorder ? Colors.transparent : widget.backgroundColor,
             filled: true,
@@ -149,7 +165,7 @@ class _TextFormFieldCustomState extends State<TextFormFieldCustom> {
           validator: widget.validator ?? null,
           onSaved: widget.onSaved,
         ),
-        if (widget.isPassword) ...[
+        if (widget.isPassword)
           IconButton(
             icon: Icon(
               _obsecurePassword ? Icons.visibility_off : Icons.visibility,
@@ -157,9 +173,8 @@ class _TextFormFieldCustomState extends State<TextFormFieldCustom> {
             ),
             onPressed: () => setState(() => _obsecurePassword = !_obsecurePassword),
           )
-        ] else ...[
+        else
           widget.suffixIcon ?? const SizedBox()
-        ]
       ],
     );
   }
