@@ -2,7 +2,10 @@ class AppConfig {
   /// id
   String indonesiaLocale;
 
-  /// ttp://www.example.com
+  ///
+  String urlAPK;
+
+  /// http://www.example.com
   String baseAPIURL;
 
   /// http://www.example.com/images
@@ -30,9 +33,8 @@ class AppConfig {
   Map<String, String> headersAPI;
 
   AppConfig({
-    /// id
-
     this.indonesiaLocale = 'id_ID',
+    this.urlAPK,
     this.baseAPIURL,
     this.baseImageURL,
     this.tokenFirebase,
@@ -48,10 +50,13 @@ class AppConfig {
     /// asset/images
     String urlImageAsset,
 
+    /// http://www.example/apk/apk.apk
+    String urlAPK,
+
     /// logo.png
     String urlLogoAsset,
 
-    /// ttp://www.example.com
+    /// http://www.example.com
     String baseAPIURL,
 
     /// http://www.example.com/images
@@ -72,6 +77,7 @@ class AppConfig {
     /// {'Content-Type': 'application/x-www-form-urlencoded'}
     Map<String, String> headersAPI,
   }) {
+    this.urlAPK = urlAPK ?? 'http://www.example.com/apk/apk.apk';
     this.headerFont = headerFont ?? 'LexendDeca';
     this.defaultFont = defaultFont ?? 'Poppins';
     this.defaultImageNetwork =
