@@ -26,7 +26,7 @@ class LoginScreenTemplate extends StatelessWidget {
     this.formPadding = const EdgeInsets.all(14.0),
     this.formMargin = const EdgeInsets.all(14.0),
     this.logoPadding = const EdgeInsets.all(8.0),
-    this.headerHeight = 3.0,
+    this.headerHeight = 4.0,
     this.outsideFormMargin,
     this.backgroundImage,
     this.formRadius,
@@ -55,6 +55,7 @@ class LoginScreenTemplate extends StatelessWidget {
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Container(
                     color: headerColor,
@@ -67,20 +68,23 @@ class LoginScreenTemplate extends StatelessWidget {
                       child: logo ?? FlutterLogo(size: sizes.width(context) / 3.5),
                     ),
                   ),
-                  Container(
-                    alignment: formAlignment,
-                    margin: outsideFormMargin,
-                    child: Card(
-                      color: formColor,
-                      margin: formMargin,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: formRadius ?? BorderRadius.circular(8.0),
-                      ),
-                      child: Padding(
-                        padding: formPadding,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: form,
+                  Expanded(
+                    child: Container(
+                      alignment: formAlignment,
+                      margin: outsideFormMargin,
+                      child: Card(
+                        color: formColor,
+                        margin: formMargin,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: formRadius ?? BorderRadius.circular(8.0),
+                        ),
+                        child: Padding(
+                          padding: formPadding,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisSize: MainAxisSize.min,
+                            children: form,
+                          ),
                         ),
                       ),
                     ),
@@ -117,11 +121,16 @@ class LoginButtonGroup extends StatelessWidget {
   final String textButton1;
   final String textButton2;
 
+  final TextStyle textStyle1;
+  final TextStyle textStyle2;
+
   LoginButtonGroup({
     @required this.onTapButton1,
     @required this.onTapButton2,
     this.textButton1,
     this.textButton2,
+    this.textStyle1,
+    this.textStyle2,
   });
   @override
   Widget build(BuildContext context) {
@@ -132,7 +141,12 @@ class LoginButtonGroup extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: FlatButton(
-              child: FittedBox(child: Text(textButton1 ?? 'Button 1')),
+              child: FittedBox(
+                child: Text(
+                  textButton1 ?? 'Button 1',
+                  style: textStyle1,
+                ),
+              ),
               onPressed: onTapButton1 ?? () {},
             ),
           ),
@@ -142,7 +156,12 @@ class LoginButtonGroup extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: FlatButton(
-              child: FittedBox(child: Text(textButton2 ?? 'Button 2')),
+              child: FittedBox(
+                child: Text(
+                  textButton2 ?? 'Button 2',
+                  style: textStyle2,
+                ),
+              ),
               onPressed: onTapButton2 ?? () {},
             ),
           ),
