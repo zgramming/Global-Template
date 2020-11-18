@@ -329,6 +329,8 @@ class GlobalFunction {
     await Fluttertoast.showToast(
       msg: message.toString(),
       backgroundColor: toastColor,
+      webShowClose: true,
+      webPosition: 'center',
       textColor: toastTextColor,
       fontSize: fontSize,
       toastLength: isLongDuration ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT,
