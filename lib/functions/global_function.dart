@@ -361,7 +361,7 @@ class GlobalFunction {
 
   ///* Memunculkan loading modal dialog
   static Future showDialogLoading(BuildContext context, {String title = 'Sedang Proses'}) async {
-    showDialog(
+    await showDialog(
       context: context,
       barrierDismissible: false,
       child: WillPopScope(
@@ -393,7 +393,7 @@ class GlobalFunction {
   }) {
     var isExist = false;
 
-    for (T list in checkedList) {
+    for (final list in checkedList) {
       if (check(list)) {
         isExist = true;
         break;
