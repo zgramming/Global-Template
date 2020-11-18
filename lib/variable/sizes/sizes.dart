@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+enum TypeLayout { Mobile, LargeMobile, Tablet, Laptop, Desktop }
+
 class SizesDevice {
   MediaQueryData mediaQuery(BuildContext context) => MediaQuery.of(context);
 
@@ -23,6 +25,23 @@ class SizesDevice {
       MediaQueryData.fromWindow(WidgetsBinding.instance.window);
 
   bool isMobileLayout(BuildContext context) => smallestDimension(context).size.shortestSide < 600;
+
+  TypeLayout checkLayoutBuilder(BoxConstraints constraints) {
+    final maxWidth = constraints.maxWidth;
+    TypeLayout typeLayout;
+    if (maxWidth < 600) {
+      typeLayout = TypeLayout.Mobile;
+    } else if (maxWidth > 600 && maxWidth < 768) {
+      typeLayout = TypeLayout.LargeMobile;
+    } else if (maxWidth > 768 && maxWidth < 992) {
+      typeLayout = TypeLayout.Tablet;
+    } else if (maxWidth > 992 && maxWidth < 1200) {
+      typeLayout = TypeLayout.Laptop;
+    } else if (maxWidth > 1200) {
+      typeLayout = TypeLayout.Desktop;
+    }
+    return typeLayout;
+  }
 
   double dp4(BuildContext context) => MediaQuery.of(context).size.width / 100;
   double dp6(BuildContext context) => MediaQuery.of(context).size.width / 70;
