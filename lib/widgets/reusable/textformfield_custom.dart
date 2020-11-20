@@ -162,7 +162,7 @@ class _TextFormFieldCustomState extends State<TextFormFieldCustom> {
           focusNode: widget.focusNode,
           onFieldSubmitted: widget.onFieldSubmitted,
           onChanged: widget.onChanged,
-          validator: widget.validator ?? null,
+          validator: widget.validator,
           onSaved: widget.onSaved,
         ),
         if (widget.isPassword)
