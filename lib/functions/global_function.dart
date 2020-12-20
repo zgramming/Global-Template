@@ -362,7 +362,7 @@ class GlobalFunction {
     showDialog(
       context: context,
       barrierDismissible: false,
-      child: WillPopScope(
+      builder: (context) => WillPopScope(
         onWillPop: () async => false,
         child: AlertDialog(
           title: Text(title),
