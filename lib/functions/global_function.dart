@@ -329,6 +329,8 @@ class GlobalFunction {
     await Fluttertoast.showToast(
       msg: message.toString(),
       backgroundColor: toastColor,
+      webShowClose: true,
+      webPosition: 'center',
       textColor: toastTextColor,
       fontSize: fontSize,
       toastLength: isLongDuration ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT,
@@ -359,7 +361,7 @@ class GlobalFunction {
 
   ///* Memunculkan loading modal dialog
   static Future showDialogLoading(BuildContext context, {String title = 'Sedang Proses'}) async {
-    showDialog(
+    await showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => WillPopScope(
@@ -391,7 +393,7 @@ class GlobalFunction {
   }) {
     var isExist = false;
 
-    for (T list in checkedList) {
+    for (final list in checkedList) {
       if (check(list)) {
         isExist = true;
         break;

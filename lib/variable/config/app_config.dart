@@ -77,15 +77,15 @@ class AppConfig {
     /// {'Content-Type': 'application/x-www-form-urlencoded'}
     Map<String, String> headersAPI,
   }) {
-    this.urlAPK = urlAPK ?? 'http://www.example.com/apk/apk.apk';
+    this.urlAPK = urlAPK ?? 'https://www.example.com/apk/apk.apk';
     this.headerFont = headerFont ?? 'LexendDeca';
     this.defaultFont = defaultFont ?? 'Poppins';
     this.defaultImageNetwork =
         defaultImageNetwork ?? 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png';
     this.urlImageAsset = urlImageAsset ?? 'assets/images';
     this.urlLogoAsset = urlLogoAsset ?? 'logo_transparent.png';
-    this.baseAPIURL = baseAPIURL ?? 'http://www.example.com';
-    this.baseImageURL = baseImageURL ?? 'http://www.example.com/images';
+    this.baseAPIURL = baseAPIURL ?? 'https://www.example.com';
+    this.baseImageURL = baseImageURL ?? 'https://www.example.com/images';
     this.tokenFirebase = tokenFirebase ?? 'exampletoken';
     this.headersAPI = headersAPI ?? {'Content-Type': 'application/x-www-form-urlencoded'};
   }

@@ -4,17 +4,19 @@ import 'package:global_template/global_template.dart';
 
 class ShowImageNetwork extends StatelessWidget {
   const ShowImageNetwork({
+    Key key,
     @required this.imageUrl,
-    this.imageCircleRadius = 35,
-    this.imageBorderRadius = 10,
     @required this.imageSize,
     this.isCircle = false,
+    this.imageCircleRadius = 35,
+    this.imageCircleElevation = 0,
+    this.imageBorderRadius = 0,
     this.padding = const EdgeInsets.all(0),
     this.alignment = Alignment.center,
-    this.loadingBuilder,
     this.fit,
     this.onErrorImage,
-  });
+    this.loadingBuilder,
+  }) : super(key: key);
 
   final String imageUrl;
 
@@ -26,6 +28,9 @@ class ShowImageNetwork extends StatelessWidget {
 
   ///! Setting Image Circle Radius
   final double imageCircleRadius;
+
+  ///! Image Circle Elevation
+  final double imageCircleElevation;
 
   ///! Setting Image Border Radius
   final double imageBorderRadius;
@@ -57,7 +62,14 @@ class ShowImageNetwork extends StatelessWidget {
           errorWidget: onErrorImage ??
               (BuildContext context, String url, dynamic error) {
                 return Center(
-                    child: IconButton(icon: const Icon(Icons.error), onPressed: () => ''));
+                  child: IconButton(
+                    icon: const Icon(Icons.error),
+                    onPressed: () {
+                      print(error.runtimeType);
+                      print(url.toString());
+                    },
+                  ),
+                );
               },
           placeholder: loadingBuilder,
           fit: fit,
@@ -66,32 +78,22 @@ class ShowImageNetwork extends StatelessWidget {
       ),
     );
 
-    return isCircle
-        ? Padding(
-            padding: padding,
-            child: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              radius: sizes.width(context) / imageCircleRadius,
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: colorPallete.black.withOpacity(.5),
-                      blurRadius: 2,
-                      offset: const Offset(2, 1),
-                    ),
-                  ],
-                  image: DecorationImage(
-                    image: CachedNetworkImageProvider(
-                      imageUrl,
-                    ),
-                    fit: fit,
-                  ),
-                ),
-              ),
-            ),
-          )
-        : image;
+    if (isCircle) {
+      return Padding(
+        padding: padding,
+        child: Card(
+          child: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: sizes.width(context) / imageCircleRadius,
+            backgroundImage: CachedNetworkImageProvider(imageUrl),
+          ),
+          shape: CircleBorder(),
+          elevation: imageCircleElevation,
+          clipBehavior: Clip.antiAlias,
+        ),
+      );
+    } else {
+      return image;
+    }
   }
 }
