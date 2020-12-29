@@ -408,24 +408,24 @@ class GlobalFunction {
 
   ///* How method where & firstWhere under the hood
   ///* Olny for testing
-  List<T> where<T>(List<T> items, bool Function(T) f) {
-    var results = <T>[];
-    for (var item in items) {
-      if (f(item)) {
-        results.add(item);
-      }
-    }
-    return results;
-  }
+//   List<T> where<T>(List<T> items, bool Function(T) f) {
+//     var results = <T>[];
+//     for (var item in items) {
+//       if (f(item)) {
+//         results.add(item);
+//       }
+//     }
+//     return results;
+//   }
 
-  T firstWhere<T>(List<T> items, {@required bool Function(T) f, @required T Function() orElse}) {
-    for (final item in items) {
-      if (f(item)) {
-        return item;
-      }
-    }
-    return orElse();
-  }
+//   T firstWhere<T>(List<T> items, {@required bool Function(T) f, @required T Function() orElse}) {
+//     for (final item in items) {
+//       if (f(item)) {
+//         return item;
+//       }
+//     }
+//     return orElse();
+//   }
 }
 
 class InputNumberFormat extends TextInputFormatter {
