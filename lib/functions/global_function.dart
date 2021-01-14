@@ -243,6 +243,12 @@ class GlobalFunction {
     }
   }
 
+  /// * Mendapatkan apakah hari ini weekend / tidak
+  static bool isWeekend(int year, int month, int day) {
+    final date = DateTime(year, month, day);
+    return (date.weekday == DateTime.saturday || date.weekday == DateTime.sunday);
+  }
+
   ///* Mendapatkan Total Hari Pada bulan X
   static int totalDaysOfMonth(int year, int month) {
     final result = (month < 12) ? DateTime(year, month + 1, 0) : DateTime(year + 1, 1, 0);
