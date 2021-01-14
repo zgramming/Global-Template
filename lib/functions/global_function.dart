@@ -12,6 +12,8 @@ import 'package:package_info/package_info.dart';
 enum TimeFormat { Jam, JamMenit, JamMenitDetik, Menit, MenitDetik, Detik }
 enum ToastPositioned { Bottom, Center, Top }
 enum ToastType { Success, Error, Normal }
+enum TypeWeek { IsWeekEnd, IsWeekDay }
+enum TypeDateTotal { Month, Year }
 
 class GlobalFunction {
   static final DefaultCacheManager _cacheManager = DefaultCacheManager();
@@ -262,19 +264,39 @@ class GlobalFunction {
     return date2.difference(date1).inDays;
   }
 
-  ///* Mendapatkan Total Jumlah Kerja yang sudah dikurangi weekend (Sabtu,Minggu).
-  static int totalWeekDayOfMonth(int year, int month, {int day = 1}) {
-    final totalDayOfMonth = totalDaysOfMonth(year, month);
-    var result = 0;
+  ///* Mendapatkan total WeekDay / WeekEnd berdasarkan kriteria :
+  ///* Tipenya [WeekDay / WeekEnd]
+  ///* Tipe perhitungan [Bulan / Tahun]
+  ///* @Penggunaan
+  ///* final totalWeekDayOrWeekEnd = GlobalTemplate.totalWeekDayOrWeekEnd(2021,month: 1,day: 1,typeWeek: TypeWeek.IsWeekEnd,typeDateTotal: TypeDateTotal.Year);
+
+  static int totalWeekDayOrWeekEnd(
+    int year, {
+    int month = 1,
+    int day = 1,
+    TypeWeek typeWeek = TypeWeek.IsWeekDay,
+    TypeDateTotal typeDateTotal = TypeDateTotal.Month,
+  }) {
+    final totalDay = (typeDateTotal == TypeDateTotal.Month)
+        ? totalDaysOfMonth(year, month)
+        : totalDayOfYear(year - 1, year);
+
+    var weekDay = 0;
+    var weekEnd = 0;
+
     var tempDateTime = DateTime(year, month, day);
-    for (var i = day; i <= totalDayOfMonth; i++) {
+    for (var i = day; i <= totalDay; i++) {
       tempDateTime = DateTime(tempDateTime.year, tempDateTime.month, i);
       if (tempDateTime.weekday == DateTime.saturday || tempDateTime.weekday == DateTime.sunday) {
-        // print('is weekend');
+        weekEnd++;
+//         print('weekEnd || $i');
       } else {
-        result++;
+        weekDay++;
+//         print('weekDay || $i');
       }
     }
+
+    final result = (typeWeek == TypeWeek.IsWeekEnd) ? weekEnd : weekDay;
     return result;
   }
 
