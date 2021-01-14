@@ -44,30 +44,27 @@ class GlobalFunction {
     int separateEvery = 4,
     String separator = '-',
   }) {
-    var result;
+    var result = 'Invalid String';
+
     if (string.isNotEmpty || string != null) {
       final value = string.replaceAllMapped(
           RegExp(r'.{' + separateEvery.toString() + '}'), (match) => '${match.group(0)}$separator');
+
       if (string.length % separateEvery == 0) {
         result = value.substring(0, value.length - 1);
       } else {
         result = value;
       }
-    } else {
-      result = 'String is empty';
     }
+
     return result;
   }
 
   ///* Get First Character From Every Word
-  static String getFirstCharacterErveryWord({String string, int limitTo}) {
-    var result;
-    if (string.isNotEmpty) {
-      result = string.trim().split(' ').map((e) => e[0]).take(limitTo).join();
-    } else {
-      result = '';
-    }
-    return result;
+  static String getFirstCharacter({String string, int limitTo}) {
+    return (string.isNotEmpty || string != null)
+        ? string.trim().split(' ').map((e) => e[0]).take(limitTo).join()
+        : '';
   }
 
   ///* Fungsi Untuk Mem-format Angka . Dari 200000 => 200,000
@@ -440,27 +437,6 @@ class GlobalFunction {
     final result = isExist ? null : newValue;
     return result;
   }
-
-  ///* How method where & firstWhere under the hood
-  ///* Olny for testing
-//   List<T> where<T>(List<T> items, bool Function(T) f) {
-//     var results = <T>[];
-//     for (var item in items) {
-//       if (f(item)) {
-//         results.add(item);
-//       }
-//     }
-//     return results;
-//   }
-
-//   T firstWhere<T>(List<T> items, {@required bool Function(T) f, @required T Function() orElse}) {
-//     for (final item in items) {
-//       if (f(item)) {
-//         return item;
-//       }
-//     }
-//     return orElse();
-//   }
 }
 
 class InputNumberFormat extends TextInputFormatter {
