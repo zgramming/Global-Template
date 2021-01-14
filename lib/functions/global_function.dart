@@ -255,6 +255,13 @@ class GlobalFunction {
     return result.day;
   }
 
+  ///* Mendatkan Total Hari Pada Tahun X
+  static int totalDayOfYear(int year1, int year2) {
+    final date1 = DateTime(year1);
+    final date2 = DateTime(year2);
+    return date2.difference(date1).inDays;
+  }
+
   ///* Mendapatkan Total Jumlah Kerja yang sudah dikurangi weekend (Sabtu,Minggu).
   static int totalWeekDayOfMonth(int year, int month, {int day = 1}) {
     final totalDayOfMonth = totalDaysOfMonth(year, month);
