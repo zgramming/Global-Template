@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -242,10 +243,69 @@ class GlobalFunction {
     }
   }
 
-  /// * Mendapatkan apakah hari ini weekend / tidak
-  static bool isWeekend(int year, int month, int day) {
-    final date = DateTime(year, month, day);
-    return (date.weekday == DateTime.saturday || date.weekday == DateTime.sunday);
+  ///* Get readable file size [https://github.com/synw/filesize]
+  static dynamic getFileSize(
+    String pathFile, {
+    int round = 2,
+    bool isReadable = true,
+  }) {
+    var divider = 1024;
+    try {
+      if (!File(pathFile).existsSync()) {
+        throw 'File not Exists !!!';
+      }
+      var _file = File(pathFile);
+      var _size = _file.lengthSync();
+
+      if (_size < divider) {
+        return '$_size B';
+      }
+
+      if (_size < (divider * divider) && _size % divider == 0) {
+        return '${(_size / divider).toStringAsFixed(0)} KB';
+      }
+
+      if (_size < (divider * divider)) {
+        return '${(_size / divider).toStringAsFixed(round)} KB';
+      }
+
+      if (_size < divider * divider * divider && _size % divider == 0) {
+        return '${(_size / (divider * divider)).toStringAsFixed(0)} MB';
+      }
+
+      if (_size < divider * divider * divider) {
+        return '${(_size / divider / divider).toStringAsFixed(round)} MB';
+      }
+
+      if (_size < divider * divider * divider * divider && _size % divider == 0) {
+        return '${(_size / (divider * divider * divider)).toStringAsFixed(0)} GB';
+      }
+
+      if (_size < divider * divider * divider * divider) {
+        return '${(_size / divider / divider / divider).toStringAsFixed(round)} GB';
+      }
+
+      if (_size < divider * divider * divider * divider * divider && _size % divider == 0) {
+        num r = _size / divider / divider / divider / divider;
+        return '${r.toStringAsFixed(0)} TB';
+      }
+
+      if (_size < divider * divider * divider * divider * divider) {
+        num r = _size / divider / divider / divider / divider;
+        return '${r.toStringAsFixed(round)} TB';
+      }
+
+      if (_size < divider * divider * divider * divider * divider * divider &&
+          _size % divider == 0) {
+        num r = _size / divider / divider / divider / divider / divider;
+        return '${r.toStringAsFixed(0)} PB';
+      } else {
+        num r = _size / divider / divider / divider / divider / divider;
+        return '${r.toStringAsFixed(round)} PB';
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
   ///* Mendapatkan Total Hari Pada bulan X
@@ -316,6 +376,18 @@ class GlobalFunction {
   static Future<PackageInfo> packageInfo() async {
     final result = await PackageInfo.fromPlatform();
     return result;
+  }
+
+  static Color getRandomColor() {
+    final _random = Random();
+    var color = colorPallete.arrColor[_random.nextInt(colorPallete.arrColor.length)];
+    return color;
+  }
+
+  /// * Mendapatkan apakah hari ini weekend / tidak
+  static bool isWeekend(int year, int month, int day) {
+    final date = DateTime(year, month, day);
+    return (date.weekday == DateTime.saturday || date.weekday == DateTime.sunday);
   }
 
   ///* Memunculkan Toast
@@ -409,12 +481,6 @@ class GlobalFunction {
         ),
       ),
     );
-  }
-
-  static Color getRandomColor() {
-    final _random = Random();
-    var color = colorPallete.arrColor[_random.nextInt(colorPallete.arrColor.length)];
-    return color;
   }
 
   ///* Check if value in list already exist/not
