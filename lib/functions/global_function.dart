@@ -82,24 +82,24 @@ class GlobalFunction {
     return result;
   }
 
-  /// Format : Jam
-  static String formatHours(DateTime date) {
+  /// Format Jam
+  static String formatH(DateTime date) {
     return DateFormat.H(appConfig.indonesiaLocale).format(date);
   }
 
   /// Format : Jam:Menit
-  static String formatHoursMinutes(DateTime date) {
+  static String formatHM(DateTime date) {
     return DateFormat.Hm(appConfig.indonesiaLocale).format(date);
   }
 
   /// Format : Jam:Menit:Detik
-  static String formatHoursMinutesSeconds(DateTime date) {
+  static String formatHMS(DateTime date) {
     final result = DateFormat.Hms(appConfig.indonesiaLocale).format(date);
     return result.replaceAll('.', ':');
   }
 
   /// Format Hari
-  static String formatDay(DateTime date, {int type = 2}) {
+  static String formatD(DateTime date, {int type = 2}) {
     if (type == 1) {
       return DateFormat.E(appConfig.indonesiaLocale).format(date);
     } else {
@@ -108,7 +108,7 @@ class GlobalFunction {
   }
 
   /// Format Bulan
-  static String formatMonth(DateTime date, {int type = 1}) {
+  static String formatM(DateTime date, {int type = 1}) {
     switch (type) {
       case 1:
         return DateFormat.M(appConfig.indonesiaLocale).format(date);
@@ -126,7 +126,7 @@ class GlobalFunction {
   }
 
   /// Format Bulan Hari
-  static String formatMonthDay(DateTime date, {int type = 1}) {
+  static String formatMD(DateTime date, {int type = 1}) {
     switch (type) {
       case 1:
         return DateFormat.MMMd(appConfig.indonesiaLocale).format(date);
@@ -147,12 +147,12 @@ class GlobalFunction {
   }
 
   /// Format : Tahun
-  static String formatYear(DateTime date) {
+  static String formatY(DateTime date) {
     return DateFormat.y(appConfig.indonesiaLocale).format(date);
   }
 
   /// Format : Tahun:Bulan[type=?]
-  static String formatYearMonth(DateTime date, {int type = 3}) {
+  static String formatYM(DateTime date, {int type = 3}) {
     if (type == 1) {
       return DateFormat.yM(appConfig.indonesiaLocale).format(date);
     } else if (type == 2) {
@@ -165,7 +165,7 @@ class GlobalFunction {
   }
 
   /// Format : Tahun:Bulan:Hari[type=1/2/3]
-  static String formatYearMonthDay(DateTime date, {int type = 1}) {
+  static String formatYMD(DateTime date, {int type = 1}) {
     if (type == 1) {
       return DateFormat.yMd(appConfig.indonesiaLocale).format(date);
     } else if (type == 2) {
@@ -178,7 +178,7 @@ class GlobalFunction {
   }
 
   /// Format : Tahun:Bulan:Hari[type=?] , Specific disini maksudnya Hari = Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu
-  static String formatYearMonthDaySpecific(DateTime date, {int type = 3}) {
+  static String formatYMDS(DateTime date, {int type = 3}) {
     if (type == 1) {
       return DateFormat.yMEd(appConfig.indonesiaLocale).format(date);
     } else if (type == 2) {
