@@ -1,4 +1,4 @@
-# global_template
+# Global Template for Flutter Development
 
 A new Flutter package project.
 
