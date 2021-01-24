@@ -36,16 +36,16 @@ class _LiveClockState extends State<LiveClock> {
         if (snapshot.hasData) {
           return RichText(
             text: TextSpan(
-                text: GlobalFunction.formatYearMonthDaySpecific(DateTime.now(), type: 3),
+                text: GlobalFunction.formatYMDS(DateTime.now(), type: 3),
                 style: widget.textStyle ?? TextStyle(color: colorPallete.black),
                 children: [
-                  TextSpan(text: ' ${GlobalFunction.formatHoursMinutesSeconds(snapshot.data)}'),
+                  TextSpan(text: ' ${GlobalFunction.formatHMS(snapshot.data)}'),
                 ]),
             textAlign: TextAlign.center,
           );
         }
         return Text(
-            '${GlobalFunction.formatYearMonthDaySpecific(DateTime.now())} ${GlobalFunction.formatHoursMinutes(DateTime.now())}');
+            '${GlobalFunction.formatYMDS(DateTime.now())} ${GlobalFunction.formatHM(DateTime.now())}');
       },
     );
   }

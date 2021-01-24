@@ -53,7 +53,7 @@ class _CopyRightVersionState extends State<CopyRightVersion> {
               if (widget.showCopyRight)
                 Text(
                   widget.copyRight ??
-                      'Copyright ${GlobalFunction.formatYear(DateTime.now())} \u00a9 Zeffry Reynando',
+                      'Copyright ${GlobalFunction.formatY(DateTime.now())} \u00a9 Zeffry Reynando',
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
                 ),
