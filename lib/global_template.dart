@@ -36,4 +36,7 @@ export './template/splashscreen_template/initial_splash_template.dart';
 
 export './template/loginscreen_template/loginscreen_template.dart';
 
+export './template/onboardingscreen_template/onboardingscreen_template.dart';
+export './template/onboardingscreen_template/widgets/onboarding_item.dart';
+
 export './extension/group_by.dart';
