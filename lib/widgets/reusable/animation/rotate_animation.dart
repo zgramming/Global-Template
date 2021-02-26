@@ -38,7 +38,6 @@ class _GRotateAnimationState extends State<GRotateAnimation> with TickerProvider
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _bounceController,
-      child: widget.child,
       builder: (ctx, child) => Transform.translate(
         offset: Offset(0.0, _bounce.value),
         child: Transform.rotate(
@@ -46,6 +45,7 @@ class _GRotateAnimationState extends State<GRotateAnimation> with TickerProvider
           child: child,
         ),
       ),
+      child: widget.child,
     );
   }
 }

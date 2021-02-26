@@ -8,7 +8,7 @@ class DrawerCustom extends StatelessWidget {
   final List<Widget> drawerMenu;
   final Color defaultTextColor;
 
-  DrawerCustom({
+  const DrawerCustom({
     @required this.imageBuilder,
     @required this.detailUser,
     @required this.drawerMenu,
@@ -58,9 +58,8 @@ class DrawerCustom extends StatelessWidget {
                   fit: FlexFit.tight,
                   flex: 10,
                   child: DefaultTextStyle(
-                    style: TextStyle(color: Colors.red),
+                    style: const TextStyle(color: Colors.red),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
                       children: drawerMenu,
                     ),
                   ),

@@ -19,7 +19,7 @@ class LoginScreenTemplate extends StatelessWidget {
   final double headerHeight;
   final BorderRadiusGeometry formRadius;
 
-  LoginScreenTemplate({
+  const LoginScreenTemplate({
     this.formAlignment = Alignment.center,
     this.formColor = Colors.white,
     this.headerColor = Colors.transparent,
@@ -61,7 +61,7 @@ class LoginScreenTemplate extends StatelessWidget {
                     color: headerColor,
                     constraints: BoxConstraints(
                       minHeight: sizes.height(context) / 6,
-                      maxHeight: sizes.height(context) / (headerHeight),
+                      maxHeight: sizes.height(context) / headerHeight,
                     ),
                     child: Padding(
                       padding: logoPadding,
@@ -101,7 +101,7 @@ class LoginScreenTemplate extends StatelessWidget {
           child: KeyboardVisibilityBuilder(
             builder: (context, child, isKeyboardVisible) {
               if (isKeyboardVisible) {
-                return SizedBox();
+                return const SizedBox();
               } else {
                 return copyRightVersion;
               }
@@ -124,7 +124,7 @@ class LoginButtonGroup extends StatelessWidget {
   final TextStyle textStyle1;
   final TextStyle textStyle2;
 
-  LoginButtonGroup({
+  const LoginButtonGroup({
     @required this.onTapButton1,
     @required this.onTapButton2,
     this.textButton1,
@@ -140,14 +140,14 @@ class LoginButtonGroup extends StatelessWidget {
           fit: FlexFit.tight,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: FlatButton(
+            child: TextButton(
+              onPressed: onTapButton1 ?? () {},
               child: FittedBox(
                 child: Text(
                   textButton1 ?? 'Button 1',
                   style: textStyle1,
                 ),
               ),
-              onPressed: onTapButton1 ?? () {},
             ),
           ),
         ),
@@ -155,14 +155,14 @@ class LoginButtonGroup extends StatelessWidget {
           fit: FlexFit.tight,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: FlatButton(
+            child: TextButton(
+              onPressed: onTapButton2 ?? () {},
               child: FittedBox(
                 child: Text(
                   textButton2 ?? 'Button 2',
                   style: textStyle2,
                 ),
               ),
-              onPressed: onTapButton2 ?? () {},
             ),
           ),
         ),

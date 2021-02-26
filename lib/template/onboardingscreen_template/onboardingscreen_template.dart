@@ -82,9 +82,9 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
 
   void _onClickNext() {
     setState(() => disabledOnPageChanged = true);
-    _pageController.nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeOut);
+    _pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
 
-    Timer(Duration(milliseconds: 500), () {
+    Timer(const Duration(milliseconds: 500), () {
       setState(() {
         indexPage++;
         progressIndicator += fixedIncrease;
@@ -118,11 +118,11 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
 
     _pageController.animateToPage(
       lastIndexPage,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       curve: Curves.easeOut,
     );
 
-    Timer(Duration(milliseconds: 500), () {
+    Timer(const Duration(milliseconds: 500), () {
       setState(() {
         progressIndicator = 1;
         indexPage = widget.items.length - 1;
@@ -151,7 +151,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
                   flex: 5,
                   child: PageView.builder(
                     controller: _pageController,
-                    physics: ClampingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     itemCount: (widget.items?.length) ?? 3,
                     onPageChanged: _onPageChanged,
                     itemBuilder: (context, index) {
@@ -160,7 +160,6 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
                   ),
                 ),
                 Expanded(
-                  flex: 1,
                   child: Stack(
                     children: [
                       Center(
@@ -168,13 +167,13 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
                           height: widget.sizeCircleIndicator,
                           width: widget.sizeCircleIndicator,
                           child: TweenAnimationBuilder(
-                            duration: Duration(seconds: 1),
+                            duration: const Duration(seconds: 1),
                             curve: Curves.decelerate,
                             tween: Tween<double>(
                               begin: progressIndicator,
                               end: progressIndicator,
                             ),
-                            builder: (context, value, _) {
+                            builder: (context, double value, _) {
                               return CircularProgressIndicator(
                                 valueColor:
                                     AlwaysStoppedAnimation<Color>(widget.valueColorCircleIndicator),
@@ -187,7 +186,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
                         ),
                       ),
                       if (disabledOnPageChanged)
-                        Center(child: CircularProgressIndicator())
+                        const Center(child: CircularProgressIndicator())
                       else
                         InkWell(
                           onTap: (indexPage == widget.items.length - 1)
@@ -195,7 +194,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
                               : () => _onClickNext(),
                           child: Center(
                             child: AnimatedSwitcher(
-                              duration: Duration(seconds: 1),
+                              duration: const Duration(seconds: 1),
                               child: (indexPage == widget.items.length - 1)
                                   ? widget.iconNext ?? Text('Finish', key: UniqueKey())
                                   : widget.iconFinish ?? Text('Next', key: UniqueKey()),
@@ -211,6 +210,8 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
         ),
         if (indexPage != widget.items.length - 1)
           Positioned(
+            top: sizes.statusBarHeight(context) * 1.5,
+            right: sizes.width(context) / 20,
             child: InkWell(
               onTap: () => _onClickSkip(),
               child: widget.iconSkip ??
@@ -222,8 +223,6 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
                     ),
                   ),
             ),
-            top: sizes.statusBarHeight(context) * 1.5,
-            right: sizes.width(context) / 20,
           ),
       ],
     );

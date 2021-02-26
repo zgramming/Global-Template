@@ -5,7 +5,7 @@ import 'package:intl/date_symbol_data_local.dart';
 
 class LiveClock extends StatefulWidget {
   final TextStyle textStyle;
-  LiveClock({this.textStyle});
+  const LiveClock({this.textStyle});
   @override
   _LiveClockState createState() => _LiveClockState();
 }
@@ -34,13 +34,15 @@ class _LiveClockState extends State<LiveClock> {
           );
         }
         if (snapshot.hasData) {
+          final result = snapshot.data as DateTime;
           return RichText(
             text: TextSpan(
-                text: GlobalFunction.formatYMDS(DateTime.now(), type: 3),
-                style: widget.textStyle ?? TextStyle(color: colorPallete.black),
-                children: [
-                  TextSpan(text: ' ${GlobalFunction.formatHMS(snapshot.data)}'),
-                ]),
+              text: GlobalFunction.formatYMDS(DateTime.now()),
+              style: widget.textStyle ?? TextStyle(color: colorPallete.black),
+              children: [
+                TextSpan(text: ' ${GlobalFunction.formatHMS(result)}'),
+              ],
+            ),
             textAlign: TextAlign.center,
           );
         }

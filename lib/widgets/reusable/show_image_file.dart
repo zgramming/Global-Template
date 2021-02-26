@@ -45,7 +45,7 @@ class ShowImageFile extends StatelessWidget {
         alignment: alignment,
         errorBuilder: onErrorImage ??
             (context, error, stackTrace) {
-              print('Error $error || stackTrace $stackTrace');
+              debugPrint('Error $error || stackTrace $stackTrace');
               return Center(
                 child: IconButton(
                   icon: const Icon(

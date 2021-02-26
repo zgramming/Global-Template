@@ -10,7 +10,7 @@ class AppTheme {
   ///The default text style for [Material].
   TextStyle bodyText2(BuildContext context) => textTheme(context).bodyText2;
 
-  ///Used for text on [RaisedButton] and [FlatButton].
+  ///Used for text on [ElevatedButton] and [TextButton].
   TextStyle button(BuildContext context) => textTheme(context).button;
 
   ///Used for auxiliary text associated with images.

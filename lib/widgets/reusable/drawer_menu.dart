@@ -5,7 +5,7 @@ class DrawerMenu extends StatelessWidget {
   final String title;
   final Widget trailing;
   final bool showDivider;
-  DrawerMenu({
+  const DrawerMenu({
     this.title = 'Menu',
     this.trailing = const Icon(Icons.home),
     this.showDivider = false,
@@ -20,7 +20,7 @@ class DrawerMenu extends StatelessWidget {
           title: Text(title),
           trailing: trailing,
         ),
-        if (showDivider) Divider(),
+        if (showDivider) const Divider(),
       ],
     );
   }

@@ -14,7 +14,8 @@ class ActionRoundedButton extends StatelessWidget {
   final double textPadding;
   final bool isVisible;
   final Widget replacementWidgetIfInvisible;
-  ActionRoundedButton({
+
+  const ActionRoundedButton({
     @required this.size,
     @required this.icon,
     this.backgroundColor,
@@ -40,7 +41,7 @@ class ActionRoundedButton extends StatelessWidget {
             decoration: BoxDecoration(
               color: backgroundColor ?? colorPallete.primaryColor,
               borderRadius: BorderRadius.circular(radius),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   offset: Offset(3, 3),
                   color: Colors.black45,
@@ -58,7 +59,7 @@ class ActionRoundedButton extends StatelessWidget {
                   ),
                 ),
                 if (title.isEmpty || title == null) ...[
-                  SizedBox(),
+                  const SizedBox(),
                 ] else ...[
                   Text(
                     title,

@@ -92,7 +92,7 @@ class TextFormFieldCustom extends StatefulWidget {
 
   final TextStyle hintStyle;
 
-  final Function(String value) validator;
+  final String Function(String value) validator;
   final Function(String value) onFieldSubmitted;
   final Function(String value) onChanged;
   final Function(String value) onSaved;
@@ -103,8 +103,14 @@ class TextFormFieldCustom extends StatefulWidget {
 
 class _TextFormFieldCustomState extends State<TextFormFieldCustom> {
   bool _obsecurePassword = true;
+  bool _obsecureText;
   @override
   Widget build(BuildContext context) {
+    if (widget.isPassword && _obsecurePassword) {
+      _obsecureText = true;
+    } else {
+      _obsecureText = false;
+    }
     return Stack(
       alignment: Alignment.centerRight,
       children: [
@@ -115,7 +121,7 @@ class _TextFormFieldCustomState extends State<TextFormFieldCustom> {
           autofocus: widget.autoFocus,
           controller: widget.controller,
           textAlign: widget.centerText ? TextAlign.center : TextAlign.left,
-          obscureText: (widget.isPassword && _obsecurePassword) ? true : false,
+          obscureText: _obsecureText,
           enabled: widget.isEnabled,
           initialValue: widget.initialValue,
           minLines: widget.minLines,

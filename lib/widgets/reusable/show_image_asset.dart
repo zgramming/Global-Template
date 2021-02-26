@@ -53,7 +53,7 @@ class ShowImageAsset extends StatelessWidget {
   final double scale;
 
   ///! Handle Error Image
-  final Function(BuildContext context, Object exception, StackTrace stackTrace) onErrorImage;
+  final Widget Function(BuildContext context, Object exception, StackTrace stackTrace) onErrorImage;
   @override
   Widget build(BuildContext context) {
     final image = Container(
@@ -68,7 +68,7 @@ class ShowImageAsset extends StatelessWidget {
         alignment: alignment,
         errorBuilder: onErrorImage ??
             (context, error, stackTrace) {
-              print('Error $error || stackTrace $stackTrace');
+              debugPrint('Error $error || stackTrace $stackTrace');
               return Center(child: IconButton(icon: const Icon(Icons.error), onPressed: () => ''));
             },
       ),
@@ -87,7 +87,7 @@ class ShowImageAsset extends StatelessWidget {
                 alignment: alignment,
                 errorBuilder: onErrorImage ??
                     (context, error, stackTrace) {
-                      print('Error $error || stackTrace $stackTrace');
+                      debugPrint('Error $error || stackTrace $stackTrace');
                       return Center(
                           child: IconButton(icon: const Icon(Icons.error), onPressed: () => ''));
                     },

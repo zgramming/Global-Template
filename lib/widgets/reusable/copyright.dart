@@ -3,7 +3,7 @@ import 'package:global_template/global_template.dart';
 import 'package:package_info/package_info.dart';
 
 class CopyRightVersion extends StatefulWidget {
-  CopyRightVersion({
+  const CopyRightVersion({
     this.copyRight,
     this.colorText = Colors.white,
     this.backgroundColor,

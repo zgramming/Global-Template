@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-enum AnimateFrom { FromLeft, FromRight, FromTop, FromBottom }
+enum AnimateFrom { fromLeft, fromRight, fromTop, fromBottom }
 
 class GSlideTransition extends StatefulWidget {
   const GSlideTransition({
     @required this.child,
     this.curve = Curves.fastOutSlowIn,
     this.duration = const Duration(seconds: 2),
-    this.position = AnimateFrom.FromRight,
+    this.position = AnimateFrom.fromRight,
   });
   final Duration duration;
   final Widget child;
@@ -23,18 +23,18 @@ class GSlideTransitionState extends State<GSlideTransition> with TickerProviderS
   @override
   void initState() {
     Offset offset;
-    if (widget.position == AnimateFrom.FromBottom) {
+    if (widget.position == AnimateFrom.fromBottom) {
       offset = const Offset(0.0, -100);
-    } else if (widget.position == AnimateFrom.FromTop) {
+    } else if (widget.position == AnimateFrom.fromTop) {
       offset = const Offset(0.0, 100);
-    } else if (widget.position == AnimateFrom.FromLeft) {
+    } else if (widget.position == AnimateFrom.fromLeft) {
       offset = const Offset(100.0, 0.0);
-    } else if (widget.position == AnimateFrom.FromRight) {
+    } else if (widget.position == AnimateFrom.fromRight) {
       offset = const Offset(-100, 0.0);
     } else {
       offset = const Offset(0.0, -100);
     }
-    print(offset);
+    debugPrint('$offset');
     slideController = AnimationController(vsync: this, duration: widget.duration);
     slide = Tween<Offset>(begin: offset, end: Offset.zero)
         .animate(CurvedAnimation(parent: slideController, curve: widget.curve));
@@ -51,17 +51,17 @@ class GSlideTransitionState extends State<GSlideTransition> with TickerProviderS
   Widget buildAnimation() {
     return AnimatedBuilder(
       animation: slideController,
-      child: widget.child,
       builder: (context, child) => Transform.translate(
         offset: slide.value,
         child: child,
       ),
+      child: widget.child,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    print(widget.position);
+    debugPrint('${widget.position}');
     return buildAnimation();
   }
 }

@@ -12,7 +12,8 @@ class ConfirmationDeleteDialog extends StatelessWidget {
   /// Digunakan jika dalam kasus dialog berada di atas modalbottomsheet
   ///
   final int totalNavigatorPop;
-  ConfirmationDeleteDialog({
+
+  const ConfirmationDeleteDialog({
     this.onCancel,
     this.onDelete,
     this.content,
@@ -24,13 +25,13 @@ class ConfirmationDeleteDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: title ?? Text('Konfirmasi hapus'),
+      title: title ?? const Text('Konfirmasi hapus'),
       actions: [
-        FlatButton(
+        TextButton(
           onPressed: onCancel ?? () => Navigator.of(context).pop(),
-          child: Text('Batal'),
+          child: const Text('Batal'),
         ),
-        RaisedButton(
+        ElevatedButton(
           onPressed: () {
             onDelete();
             // Navigator.of(context).pop();
@@ -39,7 +40,7 @@ class ConfirmationDeleteDialog extends StatelessWidget {
               Navigator.popUntil(context, (route) => totalPop++ == totalNavigatorPop);
             });
           },
-          color: colorPallete.red,
+          style: ElevatedButton.styleFrom(primary: colorPallete.red),
           child: Text(deleteText ?? 'Hapus'),
         )
       ],

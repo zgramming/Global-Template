@@ -45,7 +45,7 @@ class ShowImageNetwork extends StatelessWidget {
   final BoxFit fit;
 
   ///! Handle Error Image
-  final Function(BuildContext context, String url, dynamic error) onErrorImage;
+  final Widget Function(BuildContext context, String url, dynamic error) onErrorImage;
 
   ///! Handle when image loading
   final Widget Function(BuildContext, String) loadingBuilder;
@@ -65,8 +65,8 @@ class ShowImageNetwork extends StatelessWidget {
                   child: IconButton(
                     icon: const Icon(Icons.error),
                     onPressed: () {
-                      print(error.runtimeType);
-                      print(url.toString());
+                      debugPrint('${error.runtimeType}');
+                      debugPrint(url.toString());
                     },
                   ),
                 );
@@ -82,14 +82,14 @@ class ShowImageNetwork extends StatelessWidget {
       return Padding(
         padding: padding,
         child: Card(
+          shape: const CircleBorder(),
+          elevation: imageCircleElevation,
+          clipBehavior: Clip.antiAlias,
           child: CircleAvatar(
             backgroundColor: Colors.transparent,
             radius: sizes.width(context) / imageCircleRadius,
             backgroundImage: CachedNetworkImageProvider(imageUrl),
           ),
-          shape: CircleBorder(),
-          elevation: imageCircleElevation,
-          clipBehavior: Clip.antiAlias,
         ),
       );
     } else {

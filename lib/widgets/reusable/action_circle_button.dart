@@ -9,7 +9,7 @@ class ActionCircleButton extends StatelessWidget {
   final bool isVisible;
   final EdgeInsetsGeometry padding;
 
-  ActionCircleButton({
+  const ActionCircleButton({
     this.radius = 25.0,
     this.icon = Icons.delete,
     this.backgroundColor = Colors.grey,
@@ -23,6 +23,7 @@ class ActionCircleButton extends StatelessWidget {
     return Visibility(
       visible: isVisible,
       child: InkWell(
+        onTap: onTap,
         child: CircleAvatar(
           radius: radius,
           backgroundColor: backgroundColor,
@@ -34,7 +35,6 @@ class ActionCircleButton extends StatelessWidget {
             ),
           ),
         ),
-        onTap: onTap,
       ),
     );
   }

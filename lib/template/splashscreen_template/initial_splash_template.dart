@@ -7,7 +7,7 @@ class InitialSplashTemplate extends StatefulWidget {
     PackageInfo applicationInfo,
   ) builder;
 
-  InitialSplashTemplate({@required this.builder});
+  const InitialSplashTemplate({@required this.builder});
   @override
   _InitialSplashTemplateState createState() => _InitialSplashTemplateState();
 }

@@ -23,6 +23,7 @@ class OnboardingItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Expanded(
+          flex: 8,
           child: Center(
             child: logo ??
                 Icon(
@@ -30,24 +31,23 @@ class OnboardingItem extends StatelessWidget {
                   size: sizes.width(context),
                 ),
           ),
-          flex: 8,
         ),
         Expanded(
+          flex: 2,
           child: Center(
             child: Text(
               title,
               style: titleStyle,
             ),
           ),
-          flex: 2,
         ),
         Expanded(
+          flex: 2,
           child: Text(
             subtitle,
             textAlign: TextAlign.center,
             style: subtitleStyle,
           ),
-          flex: 2,
         ),
       ],
     );

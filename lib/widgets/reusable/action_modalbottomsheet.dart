@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:global_template/global_template.dart';
 
-enum TypeAction { DeleteAndEdit, Delete, Edit, None }
+enum TypeAction { deleteAndEdit, delete, edit, none }
 
 class ActionModalBottomSheet extends StatelessWidget {
   final WrapAlignment align;
@@ -12,7 +12,7 @@ class ActionModalBottomSheet extends StatelessWidget {
   final VoidCallback onEdit;
   final VoidCallback onDelete;
 
-  ActionModalBottomSheet({
+  const ActionModalBottomSheet({
     @required this.typeAction,
     this.align = WrapAlignment.end,
     this.spacing = 20.0,
@@ -28,15 +28,15 @@ class ActionModalBottomSheet extends StatelessWidget {
     bool editIsVisible;
 
     switch (typeAction) {
-      case TypeAction.Delete:
+      case TypeAction.delete:
         deleteIsVisible = true;
         editIsVisible = false;
         break;
-      case TypeAction.Edit:
+      case TypeAction.edit:
         deleteIsVisible = false;
         editIsVisible = true;
         break;
-      case TypeAction.None:
+      case TypeAction.none:
         deleteIsVisible = false;
         editIsVisible = false;
         break;
@@ -57,7 +57,6 @@ class ActionModalBottomSheet extends StatelessWidget {
             isVisible: deleteIsVisible,
             backgroundColor: colorPallete.red,
             foregroundColor: colorPallete.white,
-            icon: Icons.delete,
             onTap: onDelete,
           ),
           ActionCircleButton(

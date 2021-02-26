@@ -66,7 +66,8 @@ class BottomNavigationBarCustom extends StatefulWidget {
 
   /// Selected Font Size
   final double selectedFontSize;
-  BottomNavigationBarCustom({
+
+  const BottomNavigationBarCustom({
     @required this.totalScreen,
     @required this.titleBottomNavigation,
     @required this.iconBottomNavigation,
@@ -119,7 +120,7 @@ class _BottomNavigationBarCustomState extends State<BottomNavigationBarCustom> {
                 ...[Wrap(children: widget.actions)],
                 if (widget.drawer != null)
                   IconButton(
-                    icon: Icon(Icons.menu),
+                    icon: const Icon(Icons.menu),
                     onPressed: () => _scaffoldKey.currentState.openDrawer(),
                   ),
               ],
@@ -159,12 +160,12 @@ class _BottomNavigationBarCustomState extends State<BottomNavigationBarCustom> {
   }
 
   List<BottomNavigationBarItem> itemsBottom() {
-    var children = <BottomNavigationBarItem>[];
+    final children = <BottomNavigationBarItem>[];
     for (var i = 0; i < widget.totalScreen; i++) {
       children.insert(
         i,
         BottomNavigationBarItem(
-          icon: widget.iconBottomNavigation[i] ?? Icon(Icons.home),
+          icon: widget.iconBottomNavigation[i] ?? const Icon(Icons.home),
           label: widget.titleBottomNavigation[i] ?? 'Icon Title $i',
           // activeIcon: CircleAvatar()
           // activeIcon: Text('active'),

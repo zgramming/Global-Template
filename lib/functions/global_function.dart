@@ -10,12 +10,13 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter/services.dart';
 import 'package:package_info/package_info.dart';
 
-enum TimeFormat { Jam, JamMenit, JamMenitDetik, Menit, MenitDetik, Detik }
-enum ToastPositioned { Bottom, Center, Top }
-enum ToastType { Success, Error, Normal }
-enum TypeWeek { IsWeekEnd, IsWeekDay }
-enum TypeDateTotal { Month, Year }
+enum TimeFormat { jam, jamMenit, jamMenitDetik, menit, menitDetik, detik }
+enum ToastPositioned { bottom, center, top }
+enum ToastType { success, error, normal }
+enum TypeWeek { isWeekend, isWeekday }
+enum TypeDateTotal { month, year }
 
+// ignore: avoid_classes_with_only_static_members
 class GlobalFunction {
   static final DefaultCacheManager _cacheManager = DefaultCacheManager();
 
@@ -49,7 +50,9 @@ class GlobalFunction {
 
     if (string.isNotEmpty || string != null) {
       final value = string.replaceAllMapped(
-          RegExp(r'.{' + separateEvery.toString() + '}'), (match) => '${match.group(0)}$separator');
+          // ignore: unnecessary_raw_strings
+          RegExp(r'.{' '${separateEvery.toString()}' '}'),
+          (match) => '${match.group(0)}$separator');
 
       if (string.length % separateEvery == 0) {
         result = value.substring(0, value.length - 1);
@@ -219,22 +222,22 @@ class GlobalFunction {
       }
 
       switch (timeFormat) {
-        case TimeFormat.Jam:
+        case TimeFormat.jam:
           return '$resultHour Jam ';
           break;
-        case TimeFormat.JamMenit:
+        case TimeFormat.jamMenit:
           return '$resultHour Jam $resultMinute Menit';
           break;
-        case TimeFormat.JamMenitDetik:
+        case TimeFormat.jamMenitDetik:
           return '$resultHour Jam $resultMinute Menit $resultSecond Detik';
           break;
-        case TimeFormat.Menit:
+        case TimeFormat.menit:
           return '$resultMinute Menit';
           break;
-        case TimeFormat.MenitDetik:
+        case TimeFormat.menitDetik:
           return '$resultMinute Menit $resultSecond Detik';
           break;
-        case TimeFormat.Detik:
+        case TimeFormat.detik:
           return '$resultSecond Detik';
           break;
         default:
@@ -249,13 +252,13 @@ class GlobalFunction {
     int round = 2,
     bool isReadable = true,
   }) {
-    var divider = 1024;
+    const divider = 1024;
     try {
       if (!File(pathFile).existsSync()) {
         throw 'File not Exists !!!';
       }
-      var _file = File(pathFile);
-      var _size = _file.lengthSync();
+      final _file = File(pathFile);
+      final _size = _file.lengthSync();
 
       if (_size < divider) {
         return '$_size B';
@@ -286,21 +289,21 @@ class GlobalFunction {
       }
 
       if (_size < divider * divider * divider * divider * divider && _size % divider == 0) {
-        num r = _size / divider / divider / divider / divider;
+        final num r = _size / divider / divider / divider / divider;
         return '${r.toStringAsFixed(0)} TB';
       }
 
       if (_size < divider * divider * divider * divider * divider) {
-        num r = _size / divider / divider / divider / divider;
+        final num r = _size / divider / divider / divider / divider;
         return '${r.toStringAsFixed(round)} TB';
       }
 
       if (_size < divider * divider * divider * divider * divider * divider &&
           _size % divider == 0) {
-        num r = _size / divider / divider / divider / divider / divider;
+        final num r = _size / divider / divider / divider / divider / divider;
         return '${r.toStringAsFixed(0)} PB';
       } else {
-        num r = _size / divider / divider / divider / divider / divider;
+        final num r = _size / divider / divider / divider / divider / divider;
         return '${r.toStringAsFixed(round)} PB';
       }
     } catch (e) {
@@ -325,16 +328,16 @@ class GlobalFunction {
   ///* Tipenya [WeekDay / WeekEnd]
   ///* Tipe perhitungan [Bulan / Tahun]
   ///* @Penggunaan
-  ///* final totalWeekDayOrWeekEnd = GlobalTemplate.totalWeekDayOrWeekEnd(2021,month: 1,day: 1,typeWeek: TypeWeek.IsWeekEnd,typeDateTotal: TypeDateTotal.Year);
+  ///* final totalWeekDayOrWeekEnd = GlobalTemplate.totalWeekDayOrWeekEnd(2021,month: 1,day: 1,typeWeek: TypeWeek.isWeekend,typeDateTotal: TypeDateTotal.Year);
 
   static int totalWeekDayOrWeekEnd(
     int year, {
     int month = 1,
     int day = 1,
-    TypeWeek typeWeek = TypeWeek.IsWeekDay,
-    TypeDateTotal typeDateTotal = TypeDateTotal.Month,
+    TypeWeek typeWeek = TypeWeek.isWeekday,
+    TypeDateTotal typeDateTotal = TypeDateTotal.month,
   }) {
-    final totalDay = (typeDateTotal == TypeDateTotal.Month)
+    final totalDay = (typeDateTotal == TypeDateTotal.month)
         ? totalDaysOfMonth(year, month)
         : totalDayOfYear(year - 1, year);
 
@@ -353,12 +356,12 @@ class GlobalFunction {
       }
     }
 
-    final result = (typeWeek == TypeWeek.IsWeekEnd) ? weekEnd : weekDay;
+    final result = (typeWeek == TypeWeek.isWeekend) ? weekEnd : weekDay;
     return result;
   }
 
   static int getTotalLenghtWord(String string, {int substract}) {
-    var length = string.split(' ').length;
+    final length = string.split(' ').length;
     int result;
     if (substract != null) {
       if (length - substract <= 0) {
@@ -380,14 +383,14 @@ class GlobalFunction {
 
   static Color getRandomColor() {
     final _random = Random();
-    var color = colorPallete.arrColor[_random.nextInt(colorPallete.arrColor.length)];
+    final color = colorPallete.arrColor[_random.nextInt(colorPallete.arrColor.length)];
     return color;
   }
 
   /// * Mendapatkan apakah hari ini weekend / tidak
   static bool isWeekend(int year, int month, int day) {
     final date = DateTime(year, month, day);
-    return (date.weekday == DateTime.saturday || date.weekday == DateTime.sunday);
+    return date.weekday == DateTime.saturday || date.weekday == DateTime.sunday;
   }
 
   ///* Memunculkan Toast
@@ -399,17 +402,17 @@ class GlobalFunction {
     Color textColor,
     double fontSize = 16.0,
     ToastPositioned toastPositioned,
-    ToastType toastType = ToastType.Normal,
+    ToastType toastType = ToastType.normal,
   }) async {
     ToastGravity positioned;
     Color toastColor;
     Color toastTextColor;
 
     switch (toastPositioned) {
-      case ToastPositioned.Top:
+      case ToastPositioned.top:
         positioned = ToastGravity.TOP;
         break;
-      case ToastPositioned.Center:
+      case ToastPositioned.center:
         positioned = ToastGravity.CENTER;
         break;
       default:
@@ -417,11 +420,11 @@ class GlobalFunction {
         break;
     }
     switch (toastType) {
-      case ToastType.Error:
+      case ToastType.error:
         toastColor = Colors.red;
         toastTextColor = Colors.white;
         break;
-      case ToastType.Success:
+      case ToastType.success:
         toastColor = Colors.green;
         toastTextColor = Colors.white;
         break;
@@ -474,7 +477,7 @@ class GlobalFunction {
           title: Text(title),
           content: Column(
             mainAxisSize: MainAxisSize.min,
-            children: [
+            children: const [
               CircularProgressIndicator(),
             ],
           ),
@@ -514,9 +517,9 @@ class InputNumberFormat extends TextInputFormatter {
     if (newValue.text.isEmpty) {
       return newValue.copyWith(text: '');
     } else if (newValue.text.compareTo(oldValue.text) != 0) {
-      var selectionIndexFromTheRight = newValue.text.length - newValue.selection.end;
+      final selectionIndexFromTheRight = newValue.text.length - newValue.selection.end;
       final f = NumberFormat('#,###');
-      var num = int.parse(newValue.text.replaceAll(f.symbols.GROUP_SEP, ''));
+      final num = int.parse(newValue.text.replaceAll(f.symbols.GROUP_SEP, ''));
       final newString = f.format(num);
       return TextEditingValue(
         text: newString,
