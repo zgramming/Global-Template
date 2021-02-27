@@ -23,6 +23,7 @@ export './widgets/reusable/action_rounded_button.dart';
 export './widgets/reusable/animation/rotate_animation.dart';
 export './widgets/reusable/animation/slide_transition.dart';
 export './widgets/reusable/bottomnavigationbar_custom.dart';
+export './widgets/reusable/button_custom.dart';
 export './widgets/reusable/confirmation_delete_dialog.dart';
 export './widgets/reusable/copyright.dart';
 export './widgets/reusable/double_tap_to_exit.dart';
