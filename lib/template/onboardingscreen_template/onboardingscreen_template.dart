@@ -10,17 +10,20 @@ class OnboardingPage extends StatefulWidget {
   const OnboardingPage({
     Key key,
     @required this.items,
+    @required this.onPageChanged,
+    @required this.onClickNext,
     this.backgroundColorCircleIndicator = Colors.white,
     this.valueColorCircleIndicator = Colors.green,
     this.sizeCircleIndicator = 80.0,
-    this.strokeCircleIndicator = 10.0,
-    this.onPageChanged,
-    this.onClickNext,
+    this.strokeCircleIndicator = 8.0,
+    this.paddingCircleIndicator = const EdgeInsets.all(4.0),
+    this.loadingIndicator = const CircularProgressIndicator(backgroundColor: Colors.blue),
+    this.iconNext = const Text('Next'),
+    this.iconFinish = const Text('Finish'),
     this.onClickSkip,
+    this.onClickFinish,
     this.backgroundOnboarding,
     this.iconSkip,
-    this.iconNext,
-    this.iconFinish,
   }) : super(key: key);
 
   /// Background color circle progress indicator
@@ -28,6 +31,9 @@ class OnboardingPage extends StatefulWidget {
 
   /// Value color circle progress indicator
   final Color valueColorCircleIndicator;
+
+  /// Background Onboarding
+  final Color backgroundOnboarding;
 
   /// Setting size circle progress indicator
   final double sizeCircleIndicator;
@@ -38,6 +44,9 @@ class OnboardingPage extends StatefulWidget {
   /// Items OnboardingItem
   final List<OnboardingItem> items;
 
+  /// Padding
+  final EdgeInsetsGeometry paddingCircleIndicator;
+
   /// On pagechanged
   final ValueChanged<int> onPageChanged;
 
@@ -47,8 +56,8 @@ class OnboardingPage extends StatefulWidget {
   /// Trigger when skip click
   final VoidCallback onClickSkip;
 
-  /// Background Onboarding
-  final Widget backgroundOnboarding;
+  /// Trigger when finish widget appear
+  final VoidCallback onClickFinish;
 
   /// Skip Widget on Top Right
   final Widget iconSkip;
@@ -59,6 +68,9 @@ class OnboardingPage extends StatefulWidget {
   /// Finish Widget
   final Widget iconFinish;
 
+  /// Loading widget when tap next / skip
+  final Widget loadingIndicator;
+
   @override
   _OnboardingPageState createState() => _OnboardingPageState();
 }
@@ -67,17 +79,17 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
   final PageController _pageController = PageController();
 
   int indexPage = 0;
-  double progressIndicator = 0.0;
 
+  double progressIndicator = 0.0;
   double fixedIncrease = 0.0;
 
   bool disabledOnPageChanged = false;
 
   @override
   void initState() {
+    super.initState();
     fixedIncrease = (100.0 / widget.items.length - indexPage) / 100.0;
     progressIndicator = fixedIncrease;
-    super.initState();
   }
 
   void _onClickNext() {
@@ -91,11 +103,8 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
         disabledOnPageChanged = false;
       });
     });
-
     widget.onClickNext(indexPage);
   }
-
-  void _onClickFinish() {}
 
   void _onPageChanged(int index) {
     if (disabledOnPageChanged == false) {
@@ -108,7 +117,6 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
         indexPage = index;
       });
     }
-
     widget.onPageChanged(indexPage);
   }
 
@@ -131,16 +139,24 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
     });
   }
 
+  void _onClickFinish() {
+    widget.onClickFinish();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       fit: StackFit.expand,
       children: [
-        if (widget.backgroundOnboarding == null)
-          Container(
-            padding: EdgeInsets.only(top: sizes.statusBarHeight(context)),
-            color: colorPallete.primaryColor,
-          ),
+        Container(
+          padding: EdgeInsets.only(top: sizes.statusBarHeight(context)),
+          color: widget.backgroundOnboarding ?? colorPallete.accentColor,
+        ),
         SizedBox.expand(
           child: Padding(
             padding: EdgeInsets.only(top: sizes.statusBarHeight(context)),
@@ -174,30 +190,35 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
                               end: progressIndicator,
                             ),
                             builder: (context, double value, _) {
-                              return CircularProgressIndicator(
-                                valueColor:
-                                    AlwaysStoppedAnimation<Color>(widget.valueColorCircleIndicator),
-                                value: value,
-                                backgroundColor: widget.backgroundColorCircleIndicator,
-                                strokeWidth: widget.strokeCircleIndicator,
+                              return Padding(
+                                padding: widget.paddingCircleIndicator,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      widget.valueColorCircleIndicator),
+                                  value: value,
+                                  backgroundColor: widget.backgroundColorCircleIndicator,
+                                  strokeWidth: widget.strokeCircleIndicator,
+                                ),
                               );
                             },
                           ),
                         ),
                       ),
                       if (disabledOnPageChanged)
-                        const Center(child: CircularProgressIndicator())
+                        Center(child: widget.loadingIndicator)
                       else
                         InkWell(
+                          /// If index onboarding == total screen onboarding
+                          /// use method [onClickFinish], otherwise [onClickNext]
                           onTap: (indexPage == widget.items.length - 1)
                               ? () => _onClickFinish()
                               : () => _onClickNext(),
                           child: Center(
                             child: AnimatedSwitcher(
-                              duration: const Duration(seconds: 1),
+                              duration: kThemeAnimationDuration,
                               child: (indexPage == widget.items.length - 1)
-                                  ? widget.iconNext ?? Text('Finish', key: UniqueKey())
-                                  : widget.iconFinish ?? Text('Next', key: UniqueKey()),
+                                  ? widget.iconFinish
+                                  : widget.iconNext,
                             ),
                           ),
                         )
@@ -215,11 +236,19 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
             child: InkWell(
               onTap: () => _onClickSkip(),
               child: widget.iconSkip ??
-                  Text(
-                    'Skip',
-                    style: GoogleFonts.openSans(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                  OutlinedButton(
+                    onPressed: () => _onClickSkip(),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                        color: colorPallete.white,
+                      ),
+                    ),
+                    child: Text(
+                      'Skip',
+                      style: GoogleFonts.openSans(
+                        fontSize: 12,
+                        color: colorPallete.white,
+                      ),
                     ),
                   ),
             ),

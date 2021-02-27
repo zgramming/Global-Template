@@ -4,18 +4,22 @@ import 'package:global_template/global_template.dart';
 class OnboardingItem extends StatelessWidget {
   const OnboardingItem({
     Key key,
+    this.titleAlign = Alignment.center,
+    this.titlePadding = const EdgeInsets.all(8),
+    this.subtitleAlign,
+    this.subtitlePadding,
     this.logo,
-    this.title = 'Example Title',
-    this.subtitle = 'Example Subtitle , Example Subtitle , Example Subtitle ',
-    this.titleStyle,
-    this.subtitleStyle,
+    this.title,
+    this.subtitle,
   }) : super(key: key);
 
+  final AlignmentGeometry titleAlign;
+  final EdgeInsetsGeometry titlePadding;
+  final AlignmentGeometry subtitleAlign;
+  final EdgeInsetsGeometry subtitlePadding;
   final Widget logo;
-  final String title;
-  final String subtitle;
-  final TextStyle titleStyle;
-  final TextStyle subtitleStyle;
+  final Widget title;
+  final Widget subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class OnboardingItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Expanded(
-          flex: 8,
+          flex: 6,
           child: Center(
             child: logo ??
                 Icon(
@@ -34,19 +38,17 @@ class OnboardingItem extends StatelessWidget {
         ),
         Expanded(
           flex: 2,
-          child: Center(
-            child: Text(
-              title,
-              style: titleStyle,
-            ),
+          child: Container(
+            padding: titlePadding,
+            alignment: titleAlign,
+            child: title,
           ),
         ),
         Expanded(
-          flex: 2,
-          child: Text(
-            subtitle,
-            textAlign: TextAlign.center,
-            style: subtitleStyle,
+          child: Container(
+            padding: subtitlePadding,
+            alignment: subtitleAlign,
+            child: subtitle,
           ),
         ),
       ],
