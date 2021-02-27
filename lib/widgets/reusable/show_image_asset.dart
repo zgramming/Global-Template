@@ -68,8 +68,14 @@ class ShowImageAsset extends StatelessWidget {
         alignment: alignment,
         errorBuilder: onErrorImage ??
             (context, error, stackTrace) {
-              debugPrint('Error $error || stackTrace $stackTrace');
-              return Center(child: IconButton(icon: const Icon(Icons.error), onPressed: () => ''));
+              return Center(
+                child: IconButton(
+                  icon: const Icon(Icons.error),
+                  onPressed: () {
+                    debugPrint('Error $error || stackTrace $stackTrace');
+                  },
+                ),
+              );
             },
       ),
     );
